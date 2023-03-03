@@ -1,101 +1,77 @@
-import { useState, Fragment } from "react";
-import { Transition, Dialog } from "@headlessui/react";
-import ConnectWalletBtn from "./components/ConnectWalletBtn";
-import Connector from "./components/Connector";
-import { WagmiConfig } from "wagmi";
+import { useState } from "react";
+import { WagmiConfig, useConnect } from "wagmi";
 import client from "./utils/wagmi";
-import { DefaultConnectors, OtherConnectors } from "./components/Connectors";
-import { ConnectorPlaceHolder } from "./components/Connector";
+import { defaultConnectors, otherConnectors } from "./components/Connectors";
+import DefaultScreen from "./components/DefaultScreen";
+import ConnectorBox from "./components/Connector";
+import { Tab } from "@headlessui/react";
+import Metamask from "./components/Metamask";
 
 function WalletConnect() {
-  let [isOpen, setIsOpen] = useState(true);
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect();
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const [id, setId] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
   return (
     <div className="fixed inset-0 overflow-y-auto">
       <div className="flex min-h-full items-center justify-center text-center">
-        <div className="flex w-[702px] h-[450px] transform overflow-hidden rounded-2xl bg-gray-50 text-left align-middle shadow-xl ">
-          <div className="flex-col border  h-full w-[400px] border-r">
-            <div className="text-lg font-medium leading-6 border-r text-gray-900 p-4 mb-3 border-b">
-              Connect a Wallet
-            </div>
-            <div className="p-4">
-              <p className="text-neutral-600 text-xs mb-2">Popular</p>
-              <DefaultConnectors></DefaultConnectors>
-              <p className="text-neutral-600 text-xs mt-6 mb-2">
-                Other options
-              </p>
-              <OtherConnectors></OtherConnectors>
-              {/* <ConnectorPlaceHolder text={"Ledger live"} /> */}
-            </div>
-          </div>
+        <Tab.Group>
+          <div className="flex max-w-[702px] w-[40%] h-[450px] overflow-hidden rounded-2xl bg-gray-50 text-left align-middle shadow-xl ">
+            <div className="flex-col border h-full border-r">
+              <div className="text-lg font-medium leading-6 border-r text-gray-900 p-4 mb-1 border-b">
+                Connect a Wallet
+              </div>
+              <div className="p-4">
+                <Tab.List>
+                  <Tab className="p-0 flex justify-start items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-4 h-4 mr-1 opacity-60 font-normal"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                      />
+                    </svg>
+                  </Tab>
+                  <p className="text-neutral-600 text-xs mb-2 mt-4">Popular</p>
+                  <div className="space-y-3 flex flex-col justify-start items-start w-[200px]">
+                    {connectors
+                      .filter((x) => defaultConnectors.includes(x.id))
+                      .map((connector) => (
+                        <ConnectorBox connector={connector}></ConnectorBox>
+                      ))}
 
-          <div className="flex flex-col w-full m-5 divide divide-y divide-neutral-300 justify-center">
-            <div>
-              <h2 className="font-semibold text-[30px] leading-8">
-                Your Journey
-                <br />
-                into web3
-                <br />
-                starts here
-              </h2>
-              <p className="text-xs w-[200px] mt-2 text-neutral-600">
-                Your wallet is the gateway to all things Ethereum, the magical
-                technology that makes it possible to explore web3.
-              </p>
-            </div>
-            <div className="flex justify-between mt-6 py-4">
-              <div className="flex justify-start items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 text-neutral-300 mr-2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
-                  />
-                </svg>
-                <p>Your first Web3 Wallet</p>
+                    {error && <div>{error.message}</div>}
+                  </div>
+                  <p className="text-neutral-600 text-xs mt-6 mb-2">
+                    Other options
+                  </p>
+                  <div className="space-y-3 flex flex-col justify-start items-start w-[200px]">
+                    {connectors
+                      .filter((x) => otherConnectors.includes(x.id))
+                      .map((connector) => (
+                      
+                        <ConnectorBox connector={connector}></ConnectorBox>
+                      ))}
+
+                    {error && <div>{error.message}</div>}
+                  </div>
+                </Tab.List>
               </div>
-              <button className="bg-neutral-200 rounded-full text-xs px-2 py-1">
-                Get Started
-              </button>
             </div>
-            <div className="flex justify-between py-4">
-              <div className="flex justify-start items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6 text-neutral-300 mr-2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
-                  />
-                </svg>
-                <p>Explore more about Web3</p>
-              </div>
-              <button className="bg-neutral-200 rounded-full text-xs px-2 py-1">
-                Learn More
-              </button>
-            </div>
+            <Tab.Panels className="w-full h-full flex flex-col justify-center m-4">
+              <DefaultScreen />
+              <Metamask />
+            </Tab.Panels>
           </div>
-        </div>
+        </Tab.Group>
       </div>
     </div>
   );
