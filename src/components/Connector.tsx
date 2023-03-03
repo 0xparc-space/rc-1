@@ -2,11 +2,11 @@ import { Connector, useConnect } from 'wagmi'
 import { Image } from ""
 const getImageName = (text:string) => {
 	const imageMap = new Map([
-		['MetaMask', 'src/assets/metamask.svg'],
-		['WalletConnect', 'src/assets/walletConnect.svg'],
-		['Coinbase Wallet', 'src/assets/coinbase.svg'],
-		['Ledger', 'src/assets/ledger.svg'],
-		['Safe','src/assets/safe.svg']]
+		['metaMask', 'src/assets/metamask.svg'],
+		['walletConnect', 'src/assets/walletConnect.svg'],
+		['coinbaseWallet', 'src/assets/coinbase.svg'],
+		['ledger', 'src/assets/ledger.svg'],
+		['safe','src/assets/safe.svg']]
 	)
 	const res = imageMap.get(text)
 	if (res!=undefined){
@@ -19,7 +19,7 @@ const ConnectorBox = ({connector}: {connector: Connector}) => {
     useConnect()
 	console.log(connector)
 
-	const img = getImageName(connector.name)
+	const img = getImageName(connector.id)
 
 	return <>
 	<div className="flex items-center justify-start my-2"> 

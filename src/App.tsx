@@ -4,7 +4,7 @@ import ConnectWalletBtn from "./components/ConnectWalletBtn";
 import Connector from "./components/Connector";
 import { WagmiConfig } from "wagmi";
 import client from "./utils/wagmi";
-import Connectors from "./components/Connectors";
+import {DefaultConnectors,OtherConnectors} from "./components/Connectors";
 import { ConnectorPlaceHolder } from "./components/Connector";
 
 function WalletConnect(){
@@ -34,17 +34,11 @@ function WalletConnect(){
               </Dialog.Title>
               <div className="p-4">
                 <p className="text-neutral-600 text-xs mb-2">Popular</p>
-                {/* <Connector text={"Wallet Connect"} />
-                <Connector text={"Metamask"} />
-                <Connector text={"Coinbase Wallet"} />
-                <Connector text={"Rainbow"} /> */}
-                <Connectors></Connectors>
+                <DefaultConnectors></DefaultConnectors>
                 <p className="text-neutral-600 text-xs mt-6 mb-2">
                   Other options
                 </p>
-                <ConnectorPlaceHolder text={"Trust Wallet"} image={"src/assets/trust.png"} />
-                <ConnectorPlaceHolder text={"Argent Wallet"} image={"src/assets/argent.png"} />
-                <ConnectorPlaceHolder text={"Omni Wallet"} image={"src/assets/omni.png"}/>
+                <OtherConnectors></OtherConnectors>
                 {/* <ConnectorPlaceHolder text={"Ledger live"} /> */}
               </div>
             </div>
