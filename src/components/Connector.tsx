@@ -1,5 +1,5 @@
 import { Connector, useConnect } from 'wagmi'
-import { Image } from ""
+
 const getImageName = (text:string) => {
 	const imageMap = new Map([
 		['metaMask', 'src/assets/metamask.svg'],

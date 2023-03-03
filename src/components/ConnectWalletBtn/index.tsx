@@ -1,4 +1,4 @@
-const ConnectWalletBtn = ({openModal} : {openModal: () => void}) => {
+const ConnectWalletBtn = ({ openModal }: { openModal: () => void }) => {
   return (
     <button
       type="button"
