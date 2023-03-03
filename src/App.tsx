@@ -2,6 +2,10 @@ import { useState, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import ConnectWalletBtn from "./components/ConnectWalletBtn";
 import Connector from "./components/Connector";
+import { WagmiConfig } from "wagmi";
+import client from "./utils/wagmi";
+import Connectors from "./components/Connectors";
+import { ConnectorPlaceHolder } from "./components/Connector";
 
 function App() {
   let [isOpen, setIsOpen] = useState(true);
@@ -15,7 +19,8 @@ function App() {
   }
 
   return (
-    <>
+      <WagmiConfig client={client}>
+
       <div className="fixed inset-0 flex items-center justify-center">
         <ConnectWalletBtn openModal={openModal}></ConnectWalletBtn>
       </div>
@@ -56,17 +61,18 @@ function App() {
                       </Dialog.Title>
                       <div className="p-4">
                         <p className="text-neutral-600 text-xs mb-2">Popular</p>
-                        <Connector text={"Wallet Connect"} />
+                        {/* <Connector text={"Wallet Connect"} />
                         <Connector text={"Metamask"} />
                         <Connector text={"Coinbase Wallet"} />
-                        <Connector text={"Rainbow"} />
+                        <Connector text={"Rainbow"} /> */}
+                        <Connectors></Connectors>
                         <p className="text-neutral-600 text-xs mt-6 mb-2">
                           Other options
                         </p>
-                        <Connector text={"Trust Wallet"} />
-                        <Connector text={"Argent Wallet"} />
-                        <Connector text={"Ledger live"} />
-                        <Connector text={"Ledger live"} />
+                        <ConnectorPlaceHolder text={"Trust Wallet"} image={"src/assets/trust.png"} />
+                        <ConnectorPlaceHolder text={"Argent Wallet"} image={"src/assets/argent.png"} />
+                        <ConnectorPlaceHolder text={"Omni Wallet"} image={"src/assets/omni.png"}/>
+                        {/* <ConnectorPlaceHolder text={"Ledger live"} /> */}
                       </div>
                     </div>
 
@@ -137,8 +143,8 @@ function App() {
           </div>
         </Dialog>
       </Transition>
-    </>
-  );
+      </WagmiConfig>
+    );
 }
 
 export default App;
