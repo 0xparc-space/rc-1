@@ -1,8 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 export default {
   input: "src/index.ts",
@@ -17,6 +16,9 @@ export default {
       format: "esm",
       sourcemap: true,
     },
+    {
+      file: "dist/index.d.ts",
+    },
   ],
 
   plugins: [
@@ -26,10 +28,5 @@ export default {
     typescript({ tsconfig: "./tsconfig.json" }),
   ],
 
-  external: [
-	'react',
-	'wagmi',
-	'ethers',
-	'@headlessui/react'
-  ]
+  external: ["react", "wagmi", "ethers", "@headlessui/react"],
 };
