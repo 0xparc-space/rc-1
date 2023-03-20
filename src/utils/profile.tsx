@@ -1,8 +1,8 @@
-import { useConnect } from 'wagmi'
+import { useConnect } from "wagmi";
 
 export function Profile() {
   const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect()
+    useConnect();
 
   return (
     <div>
@@ -13,14 +13,14 @@ export function Profile() {
           onClick={() => connect({ connector })}
         >
           {connector.name}
-          {!connector.ready && ' (unsupported)'}
+          {!connector.ready && " (unsupported)"}
           {isLoading &&
             connector.id === pendingConnector?.id &&
-            ' (connecting)'}
+            " (connecting)"}
         </button>
       ))}
 
       {error && <div>{error.message}</div>}
     </div>
-  )
+  );
 }

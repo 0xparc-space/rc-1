@@ -20,27 +20,31 @@ const WalletConnect = () => {
               <div className="p-4">
                 <Tab.List>
                   <Tab className="p-0 flex justify-start items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="w-4 h-4 mr-1 opacity-60 font-normal"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                      />
-                    </svg>
+                    <div className="flex w-8 h-8 p-2 bg-gray-100 rounded-full justify-start items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className="w-6 h-6 opacity-90 font-normal"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                        />
+                      </svg>
+                    </div>
                   </Tab>
                   <p className="text-neutral-600 text-xs mb-2 mt-4">Popular</p>
                   <div className="space-y-3 flex flex-col justify-start items-start w-[200px]">
                     {connectors
                       .filter((x) => defaultConnectors.includes(x.id))
                       .map((connector) => (
-                        <ConnectorBox connector={connector}></ConnectorBox>
+                        <Tab className="p-0">
+                          <ConnectorBox connector={connector}></ConnectorBox>
+                        </Tab>
                       ))}
 
                     {error && <div>{error.message}</div>}
@@ -52,7 +56,12 @@ const WalletConnect = () => {
                     {connectors
                       .filter((x) => otherConnectors.includes(x.id))
                       .map((connector) => (
-                        <ConnectorBox connector={connector}></ConnectorBox>
+                        <Tab className={"p-0"}>
+                          {" "}
+                          <ConnectorBox
+                            connector={connector}
+                          ></ConnectorBox>{" "}
+                        </Tab>
                       ))}
 
                     {error && <div>{error.message}</div>}
@@ -61,8 +70,12 @@ const WalletConnect = () => {
               </div>
             </div>
             <Tab.Panels className="w-full h-full flex flex-col justify-center m-4">
-              <DefaultScreen />
-              <Metamask />
+              <Tab.Panel>
+                <DefaultScreen />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Metamask />
+              </Tab.Panel>
             </Tab.Panels>
           </div>
         </Tab.Group>
