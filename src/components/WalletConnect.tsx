@@ -1,5 +1,4 @@
 import { Tab } from "@headlessui/react";
-import { useState } from "react";
 import { useConnect } from "wagmi";
 import { defaultConnectors, otherConnectors } from "./Connectors";
 import ConnectorBox from "./Connector";
@@ -13,7 +12,7 @@ const WalletConnect = () => {
     <div className="fixed inset-0 overflow-y-auto">
       <div className="flex min-h-full items-center justify-center text-center">
         <Tab.Group>
-          <div className="flex max-w-[702px] w-[40%] h-[450px] overflow-hidden rounded-2xl bg-gray-50 text-left align-middle shadow-xl ">
+          <div className="flex w-[650px] h-[450px] overflow-hidden rounded-2xl bg-gray-50 text-left align-middle shadow-xl ">
             <div className="flex-col border h-full border-r">
               <div className="text-lg font-medium leading-6 border-r text-gray-900 p-4 mb-1 border-b">
                 Connect a Wallet

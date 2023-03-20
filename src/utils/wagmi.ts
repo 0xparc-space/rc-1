@@ -1,5 +1,5 @@
-import { WagmiConfig, createClient, configureChains, mainnet } from "wagmi";
-
+import { WagmiConfig, createClient, configureChains, mainnet, goerli,  } from "wagmi";
+import { avalanche, arbitrum, fantom, polygon } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
@@ -13,7 +13,7 @@ import { LedgerConnector } from "@wagmi/connectors/ledger";
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet],
+  [mainnet, goerli, avalanche, arbitrum, fantom, polygon, ],
   [
     alchemyProvider({ apiKey: "sKKcDLat6UwxKBOD_6JsjlXL9aM-u0n4" }),
     publicProvider(),
