@@ -1,7 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { useAccount } from "wagmi";
 
-const WalletConnectDetail = () => {
+const Coinbase = () => {
   const { address, isConnecting } = useAccount();
 
   return (
@@ -9,13 +9,13 @@ const WalletConnectDetail = () => {
       <Tab.Panel>
         <div className="flex flex-col items-center">
           <div className="h-20 w-20 rounded-xl mr-1 bg-neutral-200">
-            <img src={"src/assets/walletConnect.svg"} className="h-20 w-20" />
+            <img src={"src/assets/coinbase.svg"} className="h-20 w-20" />
           </div>
           <p className="text-sm mt-3">
             {address
               ? address
               : isConnecting
-              ? "Opening WalletConnect"
+              ? "Opening Coinbase"
               : "Failed to connect"}
           </p>
           <p className="text-xs opacity-50 mt-1">
@@ -23,7 +23,7 @@ const WalletConnectDetail = () => {
               ? ""
               : isConnecting
               ? "Confirm connection in browser extension"
-              : "Make sure you have the WalletConnect extension installed and retry"}
+              : "Make sure you have the Coinbase extension installed and retry"}
           </p>
           {isConnecting ? (
             <img
@@ -53,4 +53,4 @@ const WalletConnectDetail = () => {
   );
 };
 
-export default WalletConnectDetail;
+export default Coinbase;
