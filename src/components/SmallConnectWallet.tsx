@@ -93,6 +93,7 @@ const SmallConnectWallet = () => {
                         .filter((x) => defaultConnectors.includes(x.id))
                         .map((connector) => (
                           <div
+                            className="hover:border-0"
                             onClick={() =>
                               setSelectedTab(connector.name.toLowerCase())
                             }

@@ -16,6 +16,7 @@ const getImageName = (text: string) => {
   }
   return "default";
 };
+
 const ConnectorBox = ({ connector }: { connector: Connector }) => {
   const { connect } = useConnect();
   const { address } = useAccount();
@@ -64,7 +65,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
         <div className="h-7 w-7 rounded-xl mr-1 bg-dark-neutral-200">
           <img src={img} width={28} />
         </div>
-        {connector.name}
+        <p className="ml-1">{connector.name}</p>
         {!connector.ready && " (unsupported)"}
         {/* {isLoading &&
                     connector.id === pendingConnector?.id &&
