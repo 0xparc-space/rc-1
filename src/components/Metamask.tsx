@@ -36,7 +36,7 @@ const Metamask = () => {
             className="h-5 w-5 opacity-30 mt-2"
           />
         ) : address ? (
-          <Connected /> && (
+          <Connected /> || (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
