@@ -3,7 +3,7 @@ import { ProfileContext } from "../utils/ProfileContext";
 import { useContext } from "react";
 
 const DefaultLightScreen = () => {
-  const { profile, useProfile } = useContext(ProfileContext);
+  const { profile } = useContext(ProfileContext);
   const radius = ["rounded-none", "rounded-md", "rounded-lg", "rounded-2xl"][
     profile.radius
   ];

@@ -78,10 +78,18 @@ function WalletConnectDark() {
               </div>
             </div>
             <Tab.Panels className="w-full h-full flex flex-col justify-center m-4">
-              <DefaultScreen />
-              <Metamask />
-              <Coinbase />
-              <WalletConnectDetail />
+              <Tab.Panel>
+                <DefaultScreen />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Metamask />
+              </Tab.Panel>
+              <Tab.Panel>
+                <Coinbase />
+              </Tab.Panel>
+              <Tab.Panel>
+                <WalletConnectDetail />
+              </Tab.Panel>
             </Tab.Panels>
           </div>
         </Tab.Group>
