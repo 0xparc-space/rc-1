@@ -13,14 +13,20 @@ import Metamask from "./components/Metamask";
 import Coinbase from "./components/Coinbase";
 import WalletConnectDetail from "./components/WalletConnectDetail";
 import { ProfileContext } from "./utils/ProfileContext";
+import { disconnect } from '@wagmi/core'
+
 
 function WalletConnect() {
   const { connectors, error } = useConnect();
   const { profile } = useContext(ProfileContext);
   const radius = ["none", "md", "lg", "2xl"][profile.radius];
   return (
-    <div className="h-full inset-0 overflow-y-auto">
-      <div className="flex min-h-full items-center w-screen justify-center text-center">
+    <div
+    className="w-4/6 bg-cover bg-no-repeat h-full"
+    style={{ backgroundImage: `url(src/assets/banner.png)` }}
+  >
+    <div className="h-full inset-0 overflow-y-auto self-center">
+      <div className="flex min-h-full items-center  justify-center text-center">
         <Tab.Group>
           <div
             className={`flex w-[650px] h-[450px] overflow-hidden bg-white text-gray-900 dark:text-white dark:bg-dark-neutral-0 text-left align-middle shadow-xl rounded-${radius} `}
@@ -78,6 +84,7 @@ function WalletConnect() {
                     {error && <div>{error.message}</div>}
                   </div>
                 </Tab.List>
+                <button onClick={async ()=> { await disconnect()}}>Disconnect</button>
               </div>
             </div>
             <Tab.Panels className="w-full h-full flex flex-col justify-center m-4">
@@ -97,6 +104,7 @@ function WalletConnect() {
           </div>
         </Tab.Group>
       </div>
+    </div>
     </div>
   );
 }
