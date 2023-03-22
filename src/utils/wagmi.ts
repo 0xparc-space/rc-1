@@ -1,24 +1,30 @@
-import { WagmiConfig, createClient, configureChains, mainnet, goerli,  } from "wagmi";
-import { avalanche, arbitrum, fantom, polygon } from "wagmi/chains"
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+import {
+  WagmiConfig,
+  createClient,
+  configureChains,
+  mainnet,
+  goerli,
+} from 'wagmi'
+import { avalanche, arbitrum, fantom, polygon } from 'wagmi/chains'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { publicProvider } from 'wagmi/providers/public'
 
-import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
-import { InjectedConnector } from "wagmi/connectors/injected";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
-import { SafeConnector } from "@wagmi/connectors/safe";
-import { LedgerConnector } from "@wagmi/connectors/ledger";
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import { SafeConnector } from '@wagmi/connectors/safe'
+import { LedgerConnector } from '@wagmi/connectors/ledger'
 
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, goerli, avalanche, arbitrum, fantom, polygon, ],
+  [mainnet, goerli, avalanche, arbitrum, fantom, polygon],
   [
-    alchemyProvider({ apiKey: "sKKcDLat6UwxKBOD_6JsjlXL9aM-u0n4" }),
+    alchemyProvider({ apiKey: 'sKKcDLat6UwxKBOD_6JsjlXL9aM-u0n4' }),
     publicProvider(),
   ]
-);
+)
 
 // Set up client
 const client = createClient({
@@ -28,13 +34,14 @@ const client = createClient({
     new CoinbaseWalletConnector({
       chains,
       options: {
-        appName: "wagmi",
+        appName: 'wagmi',
       },
     }),
     new WalletConnectConnector({
       chains,
       options: {
-        qrcode: true,
+        showQr: true,
+        projectId: '194a1705481d5ecde9bc7b8a17971d91',
       },
     }),
     new LedgerConnector({
@@ -57,5 +64,5 @@ const client = createClient({
   ],
   provider,
   webSocketProvider,
-});
-export default client;
+})
+export default client

@@ -1,3 +1,3 @@
-import WalletConnect from "./components/WalletConnect";
+import WalletConnect from "./components/WalletConnectDetail";
 
 export { WalletConnect };
