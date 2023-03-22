@@ -6,6 +6,7 @@ import DefaultScreen from "./DefaultScreen";
 import Metamask from "./Metamask";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "../utils/useIsMobile";
+import Coinbase from "./Coinbase";
 
 const SmallConnectWallet = () => {
   const { connectors, error } = useConnect();
@@ -126,6 +127,8 @@ const SmallConnectWallet = () => {
                   <Metamask />
                 ) : selectedTab === "defaultscreen" ? (
                   <DefaultScreen />
+                ) : selectedTab === "coinbase" ? (
+                  <Coinbase />
                 ) : null}
               </div>
               {selectedTab !== "defaultscreen" && (
