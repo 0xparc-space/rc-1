@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useAccount, useConnect } from "wagmi";
 import ConnectWithQRCode from "./ConnectWithQr";
 
-const WalletConnectDetail = async() => {
-  const [connectorUri, setConnectorUri] = useState<string | undefined>(
-    undefined
-  );
+const WalletConnectDetail = () => {
+  // const [connectorUri, setConnectorUri] = useState<string | undefined>(
+  //   undefined
+  // );
 
-  const { address, isConnecting } = useAccount();
-  const { connectors, error,connectAsync } = useConnect();
+  // const { address, isConnecting } = useAccount();
+  // const { connectors, error,connectAsync } = useConnect();
     
   
     // try {
@@ -23,7 +23,7 @@ const WalletConnectDetail = async() => {
     // }
     // });
   // });
-  return ConnectWithQRCode({connectorId: 'walletConnect'})
+  return <ConnectWithQRCode connectorId ={'walletConnect'}/>
 };
 
 export default WalletConnectDetail;

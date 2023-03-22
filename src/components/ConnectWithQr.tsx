@@ -7,7 +7,7 @@ import CustomQRCode from './CustomQRCode';
 import { useConnect } from 'wagmi';
 
 const ConnectWithQRCode = ({ connectorId }) => {
-    console.log('hey')
+    console.log('1', connectorId)
 //   const context = useContext();
 
   const [id, setId] = useState(connectorId);
@@ -27,7 +27,7 @@ const ConnectWithQRCode = ({ connectorId }) => {
         break
   }
 
-console.log('heyy')
+console.log('2')
   async function connectWallet(connector: any) {
     const result = await connectAsync({ connector: connector });
 
@@ -40,8 +40,10 @@ console.log('heyy')
 
   async function connectWalletConnect(connector: any) {
     console.log('reaches here')
-    if (connector.options?.version === '1') {
+    console.log(connector.options)
+    // if (connector.options?.version === '1') {
       connector.on('message', async (e) => {
+        console.log(6)
         //@ts-ignore
         const p = await connector.getProvider();
         setConnectorUri(p.connector.uri);
@@ -59,43 +61,44 @@ console.log('heyy')
         //   err
         // );
       }
-    } else {
-      connector.on('message', async (e) => {
-        const p = await connector.getProvider();
-        setConnectorUri(p.uri);
-        console.log(p.uri);
+    // } else {
+    //     connector.on('message', async (e) => {
+    //       console.log(7)
+    //     const p = await connector.getProvider();
+    //     setConnectorUri(p.uri);
+    //     console.log('8', p);
+    //     console.log('connectorURI is',p.uri)
+    //     // User rejected, regenerate QR code
+    //     connector.on('disconnect', () => {
+    //       console.log('disconnect');
+    //     });
+    //     connector.on('error', () => {
+    //       console.log('disconnect');
+    //     });
+    //   });
 
-        // User rejected, regenerate QR code
-        connector.on('disconnect', () => {
-          console.log('disconnect');
-        });
-        connector.on('error', () => {
-          console.log('disconnect');
-        });
-      });
-
-      try {
-        await connectWallet(connector);
-      } catch (error: any) {
-        if (error.code) {
-          switch (error.code) {
-            case 4001:
-              console.error('User rejected');
-              connectWalletConnect(connector); // Regenerate QR code
-              break;
-            default:
-              console.error('Unknown error');
-              break;
-          }
-        } else {
-          // Sometimes the error doesn't respond with a code
-        //   context.debug(
-        //     <>WalletConnect cannot connect. See console for more details.</>,
-        //     error
-        //   );
-        }
-      }
-    }
+    //   try {
+    //     await connectWallet(connector);
+    //   } catch (error: any) {
+    //     if (error.code) {
+    //       switch (error.code) {
+    //         case 4001:
+    //           console.error('User rejected');
+    //           connectWalletConnect(connector); // Regenerate QR code
+    //           break;
+    //         default:
+    //           console.error('Unknown error');
+    //           break;
+    //       }
+    //     } else {
+    //       // Sometimes the error doesn't respond with a code
+    //     //   context.debug(
+    //     //     <>WalletConnect cannot connect. See console for more details.</>,
+    //     //     error
+    //     //   );
+    //     }
+    //   }
+    // }
   }
 
   const startConnect = async () => {
@@ -138,11 +141,13 @@ console.log('yo')
     }
   };
 
-
+console.log(3)
   useEffect(() => {
     console.log('yooo')
     if (!connectorUri) startConnect();
   }, []);
+
+  console.log(4)
 
   let imageURI
   switch (connectorId) {
@@ -153,9 +158,8 @@ console.log('yo')
         imageURI = '../assets/walletConnect.svg'
         break
   }
-
-
-  return CustomQRCode({value: connectorUri,image: imageURI})
+console.log("connector", connectorUri)
+  return <CustomQRCode value={connectorUri} image={imageURI} />
       
 };
 
