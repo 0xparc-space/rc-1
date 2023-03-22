@@ -25,8 +25,8 @@ function WalletConnect() {
           <div
             className={`flex w-[650px] h-[450px] overflow-hidden bg-white text-gray-900 dark:text-white dark:bg-dark-neutral-0 text-left align-middle shadow-xl rounded-${radius} `}
           >
-            <div className="flex-col border-r border-black dark:border-white border-opacity-10 h-full ">
-              <div className="text-lg font-medium leading-6 outline-r oueline-white outline-opacity-30 p-4 mb-1 border-b border-opacity-10 border-black dark:border-white">
+            <div className="flex-col border-r border-black dark:border-white border-opacity-10 dark:border-opacity-10 h-full ">
+              <div className="text-lg font-medium leading-6 outline-r outline-black dark:outline-white outline-opacity-30 p-4 mb-1 border-b border-opacity-10 dark:border-opacity-10 border-black dark:border-white">
                 Connect a Wallet
               </div>
               <div className="p-4">
@@ -110,11 +110,15 @@ function App() {
       (!("theme" in localStorage) &&
         window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
+      console.log("printing in light", document.documentElement.classList);
+
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      // localStorage.setItem("theme", "dark");
     } else {
+      console.log("printing", document.documentElement.classList);
+
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      // localStorage.setItem("theme", "light");
     }
   }, []);
 
@@ -128,6 +132,7 @@ function App() {
   const value = useMemo(() => ({ profile, setProfile }), [profile, setProfile]);
   return (
     <WagmiConfig client={client}>
+      <script></script>
       <div className="flex w-screen h-screen">
         <ProfileContext.Provider value={value}>
           {!isMobile && <ComponentBuilderSection />}

@@ -7,7 +7,7 @@ const DefaultLightScreen = () => {
     profile.radius
   ];
   return (
-    <div className="divide divide-y divide-black dark:divide-white divide-opacity-10">
+    <div className="divide divide-y divide-black dark:divide-white divide-opacity-10 dark:divide-opacity-10">
       <div>
         <h2 className="font-semibold text-[30px] leading-8">
           Your Journey
