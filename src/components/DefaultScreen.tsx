@@ -3,7 +3,7 @@ import { useIsMobile } from "../utils/useIsMobile";
 
 const DefaultScreen = () => {
   return (
-    <div className="divide divide-y divide-neutral-300">
+    <div className="divide divide-y divide-[#EDF0F4]">
       <div>
         <h2 className="font-semibold text-[30px] leading-8">
           Your Journey
@@ -35,7 +35,7 @@ const DefaultScreen = () => {
           </svg>
           <p>Your first Web3 Wallet</p>
         </div>
-        <button className="bg-neutral-200 rounded-full text-xs px-2 py-1">
+        <button className="bg-[#EDF0F4] rounded-full text-xs px-2 py-1">
           Get Started
         </button>
       </div>
@@ -57,7 +57,7 @@ const DefaultScreen = () => {
           </svg>
           <p>Explore more about Web3</p>
         </div>
-        <button className="bg-neutral-200 rounded-full text-xs px-2 py-1">
+        <button className="bg-[#EDF0F4]  rounded-full text-xs px-2 py-1">
           Learn More
         </button>
       </div>

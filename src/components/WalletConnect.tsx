@@ -12,22 +12,22 @@ const WalletConnect = () => {
     <div className="fixed inset-0 overflow-y-auto">
       <div className="flex min-h-full items-center justify-center text-center">
         <Tab.Group>
-          <div className="flex w-[650px] h-[450px] overflow-hidden rounded-2xl bg-gray-50 text-left align-middle shadow-xl ">
-            <div className="flex-col border h-full border-r">
-              <div className="text-lg font-medium leading-6 border-r text-gray-900 p-4 mb-1 border-b">
+          <div className="flex w-[650px] h-[450px] overflow-hidden rounded-2xl bg-white text-left align-middle shadow-2xl">
+            <div className="flex-col h-full border-r">
+              <div className="text-lg font-medium leading-6 rounded-tl-2xl outline-r text-gray-900 p-4 mb-1 border-b">
                 Connect a Wallet
               </div>
               <div className="p-4">
                 <Tab.List>
-                  <Tab className="p-0 flex justify-start items-center">
-                    <div className="flex w-8 h-8 p-2 bg-gray-100 rounded-full justify-start items-center">
+                  <Tab className="p-0 flex justify-start items-center border-0 rounded-full">
+                    <div className="flex w-8 h-8 rounded-full bg-gray-100 justify-start items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        className="w-6 h-6 opacity-90 font-normal"
+                        className="w-full h-full g-gray-10 rounded-full p-2  opacity-90 font-normal hover:bg-gray-200 hover:scale-105"
                       >
                         <path
                           stroke-linecap="round"
@@ -42,7 +42,7 @@ const WalletConnect = () => {
                     {connectors
                       .filter((x) => defaultConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className="p-0">
+                        <Tab className="p-0 border-0 active:border-0">
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}
@@ -56,7 +56,7 @@ const WalletConnect = () => {
                     {connectors
                       .filter((x) => otherConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0"}>
+                        <Tab className={"p-0 border-0 active:border-0"}>
                           {" "}
                           <ConnectorBox
                             connector={connector}
