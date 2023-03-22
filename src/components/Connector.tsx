@@ -24,19 +24,17 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
 
   const img = getImageName(connector.id);
 
-  console.log("heree");
   if (profile.mode == 0) {
     return (
       <>
-        <button
-          disabled={!connector.ready}
+        <div
           key={connector.id}
           onClick={() => {
             if (!address) {
               connect({ connector });
             }
           }}
-          className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-white hover:bg-[#EDF0F4] border-0 bg-transparent"
+          className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-transparent hover:bg-[#EDF0F4] dark:hover:bg-dark-neutral-200 border-0"
         >
           <div className="h-7 w-7 rounded-xl mr-1 bg-neutral-200">
             <img src={img} width={28} />
@@ -46,21 +44,20 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
           {/* {isLoading &&
             connector.id === pendingConnector?.id &&
             " (connecting)"} */}
-        </button>
+        </div>
       </>
     );
   }
   return (
     <>
-      <button
-        disabled={!connector.ready}
+      <div
         key={connector.id}
         onClick={() => {
           if (!address) {
             connect({ connector });
           }
         }}
-        className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-white hover:bg-[#EDF0F4] border-0 bg-transparent"
+        className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-transparent hover:bg-[#EDF0F4] dark:hover:bg-dark-neutral-200 border-0"
       >
         <div className="h-7 w-7 rounded-xl mr-1 bg-dark-neutral-200">
           <img src={img} width={28} />
@@ -70,7 +67,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
         {/* {isLoading &&
                     connector.id === pendingConnector?.id &&
                     " (connecting)"} */}
-      </button>
+      </div>
     </>
   );
 };

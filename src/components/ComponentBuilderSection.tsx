@@ -6,8 +6,8 @@ function ComponentBuilderSection() {
   console.log(profile);
 
   return (
-    <div className="w-2/6 h-full">
-      <div className="h-fit w-full bg-light-neutral-100">
+    <div className="w-2/6 h-full bg-gray-50">
+      <div className="h-fit w-full bg-gray-200">
         <div className="flex p-8 space-x-2">
           <div className="w-fit text-center px-2 py-1 rounded-full bg-light-neutral-300">
             <p className="font-medium">EVM</p>
@@ -31,13 +31,17 @@ function ComponentBuilderSection() {
           <p className="font-bold text-lg  py-4">Modal Type</p>
           <div className="space-x-2">
             <button
-              onClick={() => setProfile({ ...profile, index: 0 })}
+              onClick={() => {
+                setProfile({ ...profile, index: 0 });
+              }}
               className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
             >
               Large
             </button>
             <button
-              onClick={() => setProfile({ ...profile, index: 1 })}
+              onClick={() => {
+                setProfile({ ...profile, index: 1 });
+              }}
               className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
             >
               Compact
@@ -48,13 +52,19 @@ function ComponentBuilderSection() {
           <p className="font-bold text-lg  py-4">Mode</p>
           <div className="space-x-2">
             <button
-              onClick={() => setProfile({ ...profile, mode: 0 })}
+              onClick={() => {
+                localStorage.theme = "light";
+                setProfile({ ...profile, mode: 0 });
+              }}
               className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
             >
               Light
             </button>
             <button
-              onClick={() => setProfile({ ...profile, mode: 1 })}
+              onClick={() => {
+                localStorage.theme = "dark";
+                setProfile({ ...profile, mode: 1 });
+              }}
               className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
             >
               Dark

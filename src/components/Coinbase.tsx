@@ -1,5 +1,6 @@
 import { Tab } from "@headlessui/react";
 import { useAccount } from "wagmi";
+import { shortenAddress } from "../utils/shortenAddress";
 
 const Coinbase = () => {
   const { address, isConnecting } = useAccount();
@@ -7,12 +8,12 @@ const Coinbase = () => {
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="h-20 w-20 rounded-xl mr-1 bg-neutral-200">
+        <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
           <img src={"src/assets/coinbase.svg"} className="h-20 w-20" />
         </div>
         <p className="text-sm mt-3">
           {address
-            ? address
+            ? shortenAddress(address)
             : isConnecting
             ? "Opening Coinbase"
             : "Failed to connect"}
