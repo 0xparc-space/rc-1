@@ -35,21 +35,23 @@ function WalletConnectDark() {
               </div>
               <div className="p-4">
                 <Tab.List>
-                  <Tab className="p-0 flex justify-start items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="w-4 h-4 mr-1 opacity-60 font-normal"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                      />
-                    </svg>
+                  <Tab className="p-0 flex justify-start items-center border-0 rounded-full">
+                    <div className="flex w-8 h-8 rounded-full bg-gray-100 justify-start items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className="w-full h-full g-gray-10 rounded-full p-2  opacity-90 font-normal hover:bg-gray-200 hover:scale-105"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                        />
+                      </svg>
+                    </div>
                   </Tab>
                   <p className="text-light-neutral-0 text-xs mb-2 mt-4">
                     Popular
@@ -58,7 +60,7 @@ function WalletConnectDark() {
                     {connectors
                       .filter((x) => defaultConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0 border-0"}>
+                        <Tab className="p-0 border-0 active:border-0">
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}
@@ -72,7 +74,7 @@ function WalletConnectDark() {
                     {connectors
                       .filter((x) => otherConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0 border-0"}>
+                        <Tab className="p-0 border-0 active:border-0">
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}
@@ -119,28 +121,30 @@ function WalletConnectLight() {
               </div>
               <div className="p-4">
                 <Tab.List>
-                  <Tab className="p-0 flex justify-start items-center">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      className="w-4 h-4 mr-1 opacity-60 font-normal"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                      />
-                    </svg>
+                  <Tab className="p-0 flex justify-start items-center border-0 rounded-full">
+                    <div className="flex w-8 h-8 rounded-full bg-gray-100 justify-start items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        className="w-full h-full g-gray-10 rounded-full p-2  opacity-90 font-normal hover:bg-gray-200 hover:scale-105"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                        />
+                      </svg>
+                    </div>
                   </Tab>
                   <p className="text-neutral-600 text-xs mb-2 mt-4">Popular</p>
                   <div className="space-y-3 flex flex-col justify-start items-start w-[200px]">
                     {connectors
                       .filter((x) => defaultConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0 border-0"}>
+                        <Tab className="p-0 border-0 active:border-0">
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}
@@ -154,7 +158,7 @@ function WalletConnectLight() {
                     {connectors
                       .filter((x) => otherConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0 border-0"}>
+                        <Tab className="p-0 border-0 active:border-0">
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}

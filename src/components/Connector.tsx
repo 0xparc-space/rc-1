@@ -36,12 +36,12 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
               connect({ connector });
             }
           }}
-          className="text-sm flex items-center justify-start bg-white p-1 border-0 hover:bg-[##EDF0F4]"
+          className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-white hover:bg-[#EDF0F4] border-0 bg-transparent"
         >
           <div className="h-7 w-7 rounded-xl mr-1 bg-neutral-200">
             <img src={img} width={28} />
           </div>
-          {connector.name}
+          <p className="ml-1">{connector.name}</p>
           {!connector.ready && " (unsupported)"}
           {/* {isLoading &&
             connector.id === pendingConnector?.id &&
@@ -60,7 +60,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
             connect({ connector });
           }
         }}
-        className="text-sm flex items-center justify-start bg-black p-1 border-0 hover:bg-[##EDF0F4]"
+        className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-white hover:bg-[#EDF0F4] border-0 bg-transparent"
       >
         <div className="h-7 w-7 rounded-xl mr-1 bg-dark-neutral-200">
           <img src={img} width={28} />
