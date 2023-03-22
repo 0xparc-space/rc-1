@@ -1,4 +1,3 @@
-// import WalletConnectDetail from "./components/WalletConnect";
 import ComponentBuilderSection from "./components/ComponentBuilderSection";
 import { useIsMobile } from "./utils/useIsMobile";
 import SmallConnectWallet from "./components/SmallConnectWallet";
@@ -12,7 +11,7 @@ import ConnectorBox from "./components/Connector";
 import { Tab } from "@headlessui/react";
 import Metamask from "./components/Metamask";
 import Coinbase from "./components/Coinbase";
-import WalletConnectDetail from "./components/WalletConnect";
+import WalletConnectDetail from "./components/WalletConnectDetail";
 import { ProfileContext } from "./utils/ProfileContext";
 
 function WalletConnectDark() {
@@ -29,7 +28,9 @@ function WalletConnectDark() {
             className={`flex max-w-[800px] h-[450px] overflow-hidden bg-dark-neutral-0 text-left align-middle shadow-xl ${radius}`}
           >
             <div className="flex-col  h-full border-r-dark-neutral-200">
-              <div className="text-lg font-medium leading-6 border-r-dark-neutral-200 text-light-neutral-0 p-4 mb-1 border-b-dark-neutral-200">
+              <div
+                className={`text-lg font-medium leading-6 rounded-tl-${radius} outline-r-dark-neutral-200 text-light-neutral-0 p-4 mb-1 border-b-dark-neutral-200`}
+              >
                 Connect a Wallet
               </div>
               <div className="p-4">
@@ -57,7 +58,9 @@ function WalletConnectDark() {
                     {connectors
                       .filter((x) => defaultConnectors.includes(x.id))
                       .map((connector) => (
-                        <ConnectorBox connector={connector}></ConnectorBox>
+                        <Tab className={"p-0 border-0"}>
+                          <ConnectorBox connector={connector}></ConnectorBox>
+                        </Tab>
                       ))}
 
                     {error && <div>{error.message}</div>}
@@ -69,7 +72,9 @@ function WalletConnectDark() {
                     {connectors
                       .filter((x) => otherConnectors.includes(x.id))
                       .map((connector) => (
-                        <ConnectorBox connector={connector}></ConnectorBox>
+                        <Tab className={"p-0 border-0"}>
+                          <ConnectorBox connector={connector}></ConnectorBox>
+                        </Tab>
                       ))}
 
                     {error && <div>{error.message}</div>}
@@ -100,18 +105,16 @@ function WalletConnectDark() {
 function WalletConnectLight() {
   const { connectors, error } = useConnect();
   const { profile } = useContext(ProfileContext);
-  const radius = ["rounded-none", "rounded-md", "rounded-lg", "rounded-2xl"][
-    profile.radius
-  ];
+  const radius = ["none", "md", "lg", "2xl"][profile.radius];
   return (
-    <div className=" h-full inset-0 overflow-y-auto">
-      <div className="flex min-h-full items-center justify-center text-center">
+    <div className="h-full inset-0 overflow-y-auto">
+      <div className="flex min-h-full items-center w-screen justify-center text-center">
         <Tab.Group>
           <div
-            className={`flex max-w-[800px] h-[450px] overflow-hidden bg-gray-50 text-left align-middle shadow-xl ${radius} `}
+            className={`flex w-[650px] h-[450px] overflow-hidden bg-white text-left align-middle shadow-xl rounded-${radius} `}
           >
-            <div className="flex-col border h-full border-r">
-              <div className="text-lg font-medium leading-6 border-r text-gray-900 p-4 mb-1 border-b">
+            <div className="flex-col border-r h-full ">
+              <div className="text-lg font-medium leading-6 outline-r text-gray-900 p-4 mb-1 border-b">
                 Connect a Wallet
               </div>
               <div className="p-4">
@@ -137,7 +140,7 @@ function WalletConnectLight() {
                     {connectors
                       .filter((x) => defaultConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0"}>
+                        <Tab className={"p-0 border-0"}>
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}
@@ -151,7 +154,7 @@ function WalletConnectLight() {
                     {connectors
                       .filter((x) => otherConnectors.includes(x.id))
                       .map((connector) => (
-                        <Tab className={"p-0"}>
+                        <Tab className={"p-0 border-0"}>
                           <ConnectorBox connector={connector}></ConnectorBox>
                         </Tab>
                       ))}

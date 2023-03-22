@@ -36,7 +36,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
               connect({ connector });
             }
           }}
-          className="text-sm flex items-center justify-start bg-white p-0"
+          className="text-sm flex items-center justify-start bg-white p-1 border-0 hover:bg-[##EDF0F4]"
         >
           <div className="h-7 w-7 rounded-xl mr-1 bg-neutral-200">
             <img src={img} width={28} />
@@ -60,7 +60,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
             connect({ connector });
           }
         }}
-        className="text-sm flex items-center justify-start bg-black p-0"
+        className="text-sm flex items-center justify-start bg-black p-1 border-0 hover:bg-[##EDF0F4]"
       >
         <div className="h-7 w-7 rounded-xl mr-1 bg-dark-neutral-200">
           <img src={img} width={28} />
