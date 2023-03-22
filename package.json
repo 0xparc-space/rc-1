@@ -11,10 +11,10 @@
   },
   "peerDependencies": {
     "@headlessui/react": "^1.7.10",
-    "ethers": "^5.7.2",
+    "ethers": "^5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "wagmi": "^0.11.5"
+    "wagmi": "^0.12.4"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.10",
