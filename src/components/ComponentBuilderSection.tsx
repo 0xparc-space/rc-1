@@ -6,13 +6,13 @@ function ComponentBuilderSection() {
   console.log(profile);
 
   return (
-    <div className="w-2/6 h-full bg-gray-50">
-      <div className="h-fit w-full bg-gray-200">
+    <div className="w-2/6 h-full bg-white">
+      <div className="h-fit w-full bg-gray-100">
         <div className="flex p-8 space-x-2">
-          <div className="w-fit text-center px-2 py-1 rounded-full bg-light-neutral-300">
+          <div className="w-fit text-center px-4 py-1 rounded-full bg-light-neutral-300">
             <p className="font-medium">EVM</p>
           </div>
-          <div className="w-fit text-center px-2 py-1 rounded-full bg-light-neutral-300">
+          <div className="w-fit text-center px-4 py-1 rounded-full bg-light-neutral-300">
             <p className="font-medium">Ethereum</p>
           </div>
         </div>
@@ -34,7 +34,7 @@ function ComponentBuilderSection() {
               onClick={() => {
                 setProfile({ ...profile, index: 0 });
               }}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Large
             </button>
@@ -42,7 +42,7 @@ function ComponentBuilderSection() {
               onClick={() => {
                 setProfile({ ...profile, index: 1 });
               }}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Compact
             </button>
@@ -56,7 +56,7 @@ function ComponentBuilderSection() {
                 localStorage.theme = "light";
                 setProfile({ ...profile, dark: false });
               }}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Light
             </button>
@@ -65,7 +65,7 @@ function ComponentBuilderSection() {
                 setProfile({ ...profile, dark: true });
                 localStorage.theme = "dark";
               }}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Dark
             </button>
@@ -101,25 +101,25 @@ function ComponentBuilderSection() {
           <div className="space-x-2">
             <button
               onClick={() => setProfile({ ...profile, radius: 0 })}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               None
             </button>
             <button
               onClick={() => setProfile({ ...profile, radius: 1 })}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Small
             </button>
             <button
               onClick={() => setProfile({ ...profile, radius: 2 })}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Medium
             </button>
             <button
               onClick={() => setProfile({ ...profile, radius: 3 })}
-              className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
+              className="rounded-full px-4 py-2 bg-black text-sm bg-opacity-10 hover:ring-0 border-0 hover:bg-gray-300"
             >
               Large
             </button>

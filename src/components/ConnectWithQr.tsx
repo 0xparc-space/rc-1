@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 
-
-
-
-import CustomQRCode from './CustomQRCode';
-import { useConnect } from 'wagmi';
+import CustomQRCode from "./CustomQRCode";
+import { useConnect } from "wagmi";
 
 const ConnectWithQRCode = ({ connectorId }) => {
-    console.log('1', connectorId)
-//   const context = useContext();
+  console.log("1", connectorId);
+  //   const context = useContext();
 
   const [id, setId] = useState(connectorId);
 
@@ -17,17 +14,17 @@ const ConnectWithQRCode = ({ connectorId }) => {
     undefined
   );
 
-  let connector 
+  let connector;
   switch (connectorId) {
-    case 'coinbaseWallet': 
-        connector = connectors[1]
-        break
-    case 'walletConnect':
-        connector = connectors[2]
-        break
+    case "coinbaseWallet":
+      connector = connectors[1];
+      break;
+    case "walletConnect":
+      connector = connectors[2];
+      break;
   }
 
-console.log('2')
+  console.log("2");
   async function connectWallet(connector: any) {
     const result = await connectAsync({ connector: connector });
 
@@ -39,28 +36,28 @@ console.log('2')
   }
 
   async function connectWalletConnect(connector: any) {
-    console.log('reaches here')
-    console.log(connector.options)
+    console.log("reaches here");
+    console.log(connector.options);
     // if (connector.options?.version === '1') {
-      connector.on('message', async (e) => {
-        console.log(6)
-        //@ts-ignore
-        const p = await connector.getProvider();
-        setConnectorUri(p.connector.uri);
+    connector.on("message", async (e) => {
+      console.log(6);
+      //@ts-ignore
+      const p = await connector.getProvider();
+      setConnectorUri(p.connector.uri);
 
-        // User rejected, regenerate QR code
-        p.connector.on('disconnect', () => {
-          connectWallet(connector);
-        });
+      // User rejected, regenerate QR code
+      p.connector.on("disconnect", () => {
+        connectWallet(connector);
       });
-      try {
-        await connectWallet(connector);
-      } catch (err) {
-        // context.debug(
-        //   <>WalletConnect cannot connect. See console for more details.</>,
-        //   err
-        // );
-      }
+    });
+    try {
+      await connectWallet(connector);
+    } catch (err) {
+      // context.debug(
+      //   <>WalletConnect cannot connect. See console for more details.</>,
+      //   err
+      // );
+    }
     // } else {
     //     connector.on('message', async (e) => {
     //       console.log(7)
@@ -105,62 +102,61 @@ console.log('2')
     // const c = connectors.filter((c) => c.id === id)[0];
     // if (!c || connectorUri) return;
 
-console.log('yo')
+    console.log("yo");
 
-      switch (connectorId) {
-      case 'coinbaseWallet':
-        connector.on('message', async (e) => {
+    switch (connectorId) {
+      case "coinbaseWallet":
+        connector.on("message", async (e) => {
           const p = await connector.getProvider();
           setConnectorUri(p.qrUrl);
         });
         try {
           await connectWallet(c);
         } catch (err) {
-        //   context.debug(
-        //     <>
-        //       This dApp is most likely missing the{' '}
-        //       <code>headlessMode: true</code> flag in the custom{' '}
-        //       <code>CoinbaseWalletConnector</code> options. See{' '}
-        //       <a
-        //         target="_blank"
-        //         rel="noopener noreferrer"
-        //         href="https://connect.family.co/v0/docs/cbwHeadlessMode"
-        //       >
-        //         documentation
-        //       </a>{' '}
-        //       for more details.
-        //     </>,
-        //     err
-        //   );
+          //   context.debug(
+          //     <>
+          //       This dApp is most likely missing the{' '}
+          //       <code>headlessMode: true</code> flag in the custom{' '}
+          //       <code>CoinbaseWalletConnector</code> options. See{' '}
+          //       <a
+          //         target="_blank"
+          //         rel="noopener noreferrer"
+          //         href="https://connect.family.co/v0/docs/cbwHeadlessMode"
+          //       >
+          //         documentation
+          //       </a>{' '}
+          //       for more details.
+          //     </>,
+          //     err
+          //   );
         }
         break;
-      case 'walletConnect':
-        console.log('hey1')
+      case "walletConnect":
+        console.log("hey1");
         connectWalletConnect(connector);
         break;
     }
   };
 
-console.log(3)
+  console.log(3);
   useEffect(() => {
-    console.log('yooo')
+    console.log("yooo");
     if (!connectorUri) startConnect();
   }, []);
 
-  console.log(4)
+  console.log(4);
 
-  let imageURI
+  let imageURI;
   switch (connectorId) {
-    case 'coinbaseWallet': 
-        imageURI = '../assets/coinbase.svg'
-        break
-    case 'walletConnect':
-        imageURI = '../assets/walletConnect.svg'
-        break
+    case "coinbaseWallet":
+      imageURI = "../assets/coinbase.svg";
+      break;
+    case "walletConnect":
+      imageURI = "../assets/walletConnect.svg";
+      break;
   }
-console.log("connector", connectorUri)
-  return <CustomQRCode value={connectorUri} image={imageURI} />
-      
+  console.log("connector", connectorUri);
+  return <CustomQRCode value={connectorUri} image={imageURI} />;
 };
 
 export default ConnectWithQRCode;
