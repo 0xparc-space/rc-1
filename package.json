@@ -19,9 +19,12 @@
   "dependencies": {
     "@headlessui/react": "^1.7.10",
     "ethers": "^5.7.2",
+    "framer-motion": "^10.8.4",
+    "qrcode": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "wagmi": "^0.12.4"
+    "styled-components": "^5.3.9",
+    "wagmi": "^0.11.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
