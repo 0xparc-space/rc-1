@@ -28,7 +28,7 @@ function WalletConnect() {
     <div
       className={`h-full inset-0 overflow-y-auto ${profile.dark ? "dark" : ""}`}
     >
-      <div className="flex min-h-full items-center w-screen justify-center text-center">
+      <div className="flex min-h-full items-center justify-center text-center">
 
         <Tab.Group>
           <div
