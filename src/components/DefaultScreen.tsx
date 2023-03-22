@@ -16,7 +16,7 @@ const DefaultLightScreen = () => {
           <br />
           starts here
         </h2>
-        <p className="text-xs w-[200px] mt-2 text-white opacity-60">
+        <p className="text-xs w-[200px] mt-2 text-black dark:text-white opacity-60">
           Your wallet is the gateway to all things Ethereum, the magical
           technology that makes it possible to explore web3.
         </p>
