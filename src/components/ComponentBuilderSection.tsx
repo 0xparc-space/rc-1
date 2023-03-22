@@ -54,7 +54,7 @@ function ComponentBuilderSection() {
             <button
               onClick={() => {
                 localStorage.theme = "light";
-                setProfile({ ...profile, mode: 0 });
+                setProfile({ ...profile, dark: false });
               }}
               className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
             >
@@ -62,8 +62,8 @@ function ComponentBuilderSection() {
             </button>
             <button
               onClick={() => {
+                setProfile({ ...profile, dark: true });
                 localStorage.theme = "dark";
-                setProfile({ ...profile, mode: 1 });
               }}
               className="rounded-full px-2 py-1 bg-black text-xs bg-opacity-10 hover:ring hover:bg-white"
             >

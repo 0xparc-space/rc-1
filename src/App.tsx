@@ -18,8 +18,11 @@ function WalletConnect() {
   const { connectors, error } = useConnect();
   const { profile } = useContext(ProfileContext);
   const radius = ["none", "md", "lg", "2xl"][profile.radius];
+  console.log(profile.dark);
   return (
-    <div className="h-full inset-0 overflow-y-auto">
+    <div
+      className={`h-full inset-0 overflow-y-auto ${profile.dark ? "dark" : ""}`}
+    >
       <div className="flex min-h-full items-center w-screen justify-center text-center">
         <Tab.Group>
           <div
@@ -105,35 +108,26 @@ function App() {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      console.log("printing in light", document.documentElement.classList);
-
-      document.documentElement.classList.add("dark");
-      // localStorage.setItem("theme", "dark");
+    if (localStorage.theme) {
+      if (localStorage.theme === "light")
+        setProfile({ ...profile, dark: false });
+      if (localStorage.theme === "dark") setProfile({ ...profile, dark: true });
     } else {
-      console.log("printing", document.documentElement.classList);
-
-      document.documentElement.classList.remove("dark");
-      // localStorage.setItem("theme", "light");
+      localStorage.theme = "light";
     }
   }, []);
 
   const [profile, setProfile] = useState({
     radius: 0,
     color: 0,
-    mode: 0,
+    dark: true,
     index: 0,
   });
 
   const value = useMemo(() => ({ profile, setProfile }), [profile, setProfile]);
   return (
     <WagmiConfig client={client}>
-      <script></script>
-      <div className="flex w-screen h-screen">
+      <div className={`flex w-screen h-screen ${profile === 0 ? "dark" : ""}`}>
         <ProfileContext.Provider value={value}>
           {!isMobile && <ComponentBuilderSection />}
 

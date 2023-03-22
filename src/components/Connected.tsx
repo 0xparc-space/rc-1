@@ -24,12 +24,7 @@ const Connected = () => {
             {selectedChain.name}
           </Listbox.Button>
 
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
+          <Transition as={Fragment} leaveFrom="opacity-100" leaveTo="opacity-0">
             <Listbox.Options className="mt-1 w-full max-h-60 space-y-2 p-2 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {chains.map((chain) => (
                 <Listbox.Option
