@@ -17,7 +17,8 @@ import { ConnectedInsideModal } from "./components/Connected";
 
 function WalletConnect() {
   const { connectors, error } = useConnect();
-  const { status } = useAccount();
+
+  const { status, connector } = useAccount();
   const { profile } = useContext(ProfileContext);
   const radius = ["none", "md", "lg", "2xl"][profile.radius];
   console.log(profile.dark);
@@ -66,13 +67,19 @@ function WalletConnect() {
                     <div className="space-y-3 flex flex-col justify-start items-start w-[200px]">
                       {connectors
                         .filter((x) => defaultConnectors.includes(x.id))
-                        .map((connector, idx) => (
+                        .map((defaultConnector, idx) => (
                           <Tab
+                            disabled={
+                              connector &&
+                              connector.name.toLowerCase() !==
+                                defaultConnector.name.toLowerCase()
+                            }
                             key={idx}
-                            disabled={status === "connected"}
-                            className="p-0 border-0 active:border-0"
+                            className="p-0 border-0 active:border-0 disabled:opacity-50"
                           >
-                            <ConnectorBox connector={connector}></ConnectorBox>
+                            <ConnectorBox
+                              connector={defaultConnector}
+                            ></ConnectorBox>
                           </Tab>
                         ))}
 
@@ -84,13 +91,19 @@ function WalletConnect() {
                     <div className="space-y-3 flex flex-col justify-start items-start w-[200px]">
                       {connectors
                         .filter((x) => otherConnectors.includes(x.id))
-                        .map((connector, idx) => (
+                        .map((otherConnector, idx) => (
                           <Tab
                             key={idx}
-                            disabled={status === "connected"}
-                            className="p-0 border-0 active:border-0"
+                            disabled={
+                              connector &&
+                              connector.name.toLowerCase() !==
+                                otherConnector.name.toLowerCase()
+                            }
+                            className="p-0 border-0 active:border-0 disabled:opacity-50"
                           >
-                            <ConnectorBox connector={connector}></ConnectorBox>
+                            <ConnectorBox
+                              connector={otherConnector}
+                            ></ConnectorBox>
                           </Tab>
                         ))}
 
@@ -99,32 +112,25 @@ function WalletConnect() {
                   </Tab.List>
                 </div>
               </div>
-              {status === "connected" ? (
-                <Tab.Panels className={"w-full"}>
-                  <Tab.Panel className={"w-full h-full"}>
-                    <ConnectedInsideModal />
-                  </Tab.Panel>
-                </Tab.Panels>
-              ) : (
-                <Tab.Panels className="w-full h-full flex flex-col justify-center">
-                  <Tab.Panel className={"h-full"}>
-                    <DefaultScreen />
-                  </Tab.Panel>
-                  <Tab.Panel>
-                    <Metamask />
-                  </Tab.Panel>
-                  <Tab.Panel>
-                    <Coinbase />
-                  </Tab.Panel>
-                  <Tab.Panel
-                    className={
-                      "h-full w-full justify-center flex flex-col items-center"
-                    }
-                  >
-                    <WalletConnectDetail />
-                  </Tab.Panel>
-                </Tab.Panels>
-              )}
+
+              <Tab.Panels className="w-full h-full flex flex-col justify-center">
+                <Tab.Panel className={"h-full"}>
+                  <DefaultScreen />
+                </Tab.Panel>
+                <Tab.Panel>
+                  <Metamask />
+                </Tab.Panel>
+                <Tab.Panel>
+                  <Coinbase />
+                </Tab.Panel>
+                <Tab.Panel
+                  className={
+                    "h-full w-full justify-center flex flex-col items-center"
+                  }
+                >
+                  <WalletConnectDetail />
+                </Tab.Panel>
+              </Tab.Panels>
             </div>
           </Tab.Group>
         </div>
