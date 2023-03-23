@@ -37,7 +37,7 @@ const ConnectWithQRCode = ({ connectorId }) => {
 
   async function connectWalletConnect(connector: any) {
     console.log("reaches here");
-    console.log(connector.options);
+    console.log("5->", connector.options);
     // if (connector.options?.version === '1') {
     // connector.on("message", async (e) => {
     //   console.log(6);
@@ -59,43 +59,44 @@ const ConnectWithQRCode = ({ connectorId }) => {
     //   // );
     // }
     // } else {
-        connector.on('message', async (e) => {
-          console.log(7)
-        const p = await connector.getProvider();
-        setConnectorUri(p.uri);
-        console.log('8', p);
-        console.log('connectorURI is',p.uri)
-        // User rejected, regenerate QR code
-        connector.on('disconnect', () => {
-          console.log('disconnect');
-        });
-        connector.on('error', () => {
-          console.log('disconnect');
-        });
+    console.log("6", await connector.getProvider());
+    connector.on("message", async (e) => {
+      console.log(7);
+      const p = await connector.getProvider();
+      setConnectorUri(p.uri);
+      console.log("8", p);
+      console.log("connectorURI is", p.uri);
+      // User rejected, regenerate QR code
+      connector.on("disconnect", () => {
+        console.log("disconnect");
       });
+      connector.on("error", () => {
+        console.log("disconnect");
+      });
+    });
 
-      try {
-        const res = await connectWallet(connector);
-        console.log('connected res', res)
-      } catch (error: any) {
-        if (error.code) {
-          switch (error.code) {
-            case 4001:
-              console.error('User rejected');
-              connectWalletConnect(connector); // Regenerate QR code
-              break;
-            default:
-              console.error('Unknown error');
-              break;
-          }
-        } else {
-          // Sometimes the error doesn't respond with a code
+    try {
+      const res = await connectWallet(connector);
+      console.log("connected res", res);
+    } catch (error: any) {
+      if (error.code) {
+        switch (error.code) {
+          case 4001:
+            console.error("User rejected");
+            connectWalletConnect(connector); // Regenerate QR code
+            break;
+          default:
+            console.error("Unknown error");
+            break;
+        }
+      } else {
+        // Sometimes the error doesn't respond with a code
         //   context.debug(
         //     <>WalletConnect cannot connect. See console for more details.</>,
         //     error
         //   );
-        }
       }
+    }
     // }
   }
 
@@ -150,10 +151,10 @@ const ConnectWithQRCode = ({ connectorId }) => {
   let imageURI;
   switch (connectorId) {
     case "coinbaseWallet":
-      imageURI = "../assets/coinbase.svg";
+      imageURI = "/src/assets/coinbase.svg";
       break;
     case "walletConnect":
-      imageURI = "../assets/walletConnect.svg";
+      imageURI = "/src/assets/walletConnect.svg";
       break;
   }
   console.log("connector", connectorUri);

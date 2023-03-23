@@ -13,7 +13,7 @@ import Metamask from "./components/Metamask";
 import Coinbase from "./components/Coinbase";
 import WalletConnectDetail from "./components/WalletConnectDetail";
 import { ProfileContext } from "./utils/ProfileContext";
-import Connected, { ConnectedInsideModal } from "./components/Connected";
+import { ConnectedInsideModal } from "./components/Connected";
 
 function WalletConnect() {
   const { connectors, error } = useConnect();
@@ -106,8 +106,8 @@ function WalletConnect() {
                   </Tab.Panel>
                 </Tab.Panels>
               ) : (
-                <Tab.Panels className="w-full h-full flex flex-col justify-center m-4">
-                  <Tab.Panel>
+                <Tab.Panels className="w-full h-full flex flex-col justify-center">
+                  <Tab.Panel className={"h-full"}>
                     <DefaultScreen />
                   </Tab.Panel>
                   <Tab.Panel>
@@ -116,7 +116,11 @@ function WalletConnect() {
                   <Tab.Panel>
                     <Coinbase />
                   </Tab.Panel>
-                  <Tab.Panel>
+                  <Tab.Panel
+                    className={
+                      "h-full w-full justify-center flex flex-col items-center"
+                    }
+                  >
                     <WalletConnectDetail />
                   </Tab.Panel>
                 </Tab.Panels>
