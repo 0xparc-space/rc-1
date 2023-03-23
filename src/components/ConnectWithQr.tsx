@@ -39,62 +39,63 @@ const ConnectWithQRCode = ({ connectorId }) => {
     console.log("reaches here");
     console.log(connector.options);
     // if (connector.options?.version === '1') {
-    connector.on("message", async (e) => {
-      console.log(6);
-      //@ts-ignore
-      const p = await connector.getProvider();
-      setConnectorUri(p.connector.uri);
+    // connector.on("message", async (e) => {
+    //   console.log(6);
+    //   //@ts-ignore
+    //   const p = await connector.getProvider();
+    //   setConnectorUri(p.connector.uri);
 
-      // User rejected, regenerate QR code
-      p.connector.on("disconnect", () => {
-        connectWallet(connector);
-      });
-    });
-    try {
-      await connectWallet(connector);
-    } catch (err) {
-      // context.debug(
-      //   <>WalletConnect cannot connect. See console for more details.</>,
-      //   err
-      // );
-    }
-    // } else {
-    //     connector.on('message', async (e) => {
-    //       console.log(7)
-    //     const p = await connector.getProvider();
-    //     setConnectorUri(p.uri);
-    //     console.log('8', p);
-    //     console.log('connectorURI is',p.uri)
-    //     // User rejected, regenerate QR code
-    //     connector.on('disconnect', () => {
-    //       console.log('disconnect');
-    //     });
-    //     connector.on('error', () => {
-    //       console.log('disconnect');
-    //     });
+    //   // User rejected, regenerate QR code
+    //   p.connector.on("disconnect", () => {
+    //     connectWallet(connector);
     //   });
+    // });
+    // try {
+    //   await connectWallet(connector);
+    // } catch (err) {
+    //   // context.debug(
+    //   //   <>WalletConnect cannot connect. See console for more details.</>,
+    //   //   err
+    //   // );
+    // }
+    // } else {
+        connector.on('message', async (e) => {
+          console.log(7)
+        const p = await connector.getProvider();
+        setConnectorUri(p.uri);
+        console.log('8', p);
+        console.log('connectorURI is',p.uri)
+        // User rejected, regenerate QR code
+        connector.on('disconnect', () => {
+          console.log('disconnect');
+        });
+        connector.on('error', () => {
+          console.log('disconnect');
+        });
+      });
 
-    //   try {
-    //     await connectWallet(connector);
-    //   } catch (error: any) {
-    //     if (error.code) {
-    //       switch (error.code) {
-    //         case 4001:
-    //           console.error('User rejected');
-    //           connectWalletConnect(connector); // Regenerate QR code
-    //           break;
-    //         default:
-    //           console.error('Unknown error');
-    //           break;
-    //       }
-    //     } else {
-    //       // Sometimes the error doesn't respond with a code
-    //     //   context.debug(
-    //     //     <>WalletConnect cannot connect. See console for more details.</>,
-    //     //     error
-    //     //   );
-    //     }
-    //   }
+      try {
+        const res = await connectWallet(connector);
+        console.log('connected res', res)
+      } catch (error: any) {
+        if (error.code) {
+          switch (error.code) {
+            case 4001:
+              console.error('User rejected');
+              connectWalletConnect(connector); // Regenerate QR code
+              break;
+            default:
+              console.error('Unknown error');
+              break;
+          }
+        } else {
+          // Sometimes the error doesn't respond with a code
+        //   context.debug(
+        //     <>WalletConnect cannot connect. See console for more details.</>,
+        //     error
+        //   );
+        }
+      }
     // }
   }
 

@@ -12,4 +12,5 @@ export default defineConfig({
     'global.WebSocket': 'globalThis.WebSocket',
     'process.env': {},
   },
+  publicDir: 'src/assets',
 })

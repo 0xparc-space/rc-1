@@ -10,6 +10,7 @@ import {
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { QRCode } from './QRCode';
+import { QRCodeCanvas } from "qrcode.react";
 
 function CustomQRCode({
   value,
@@ -21,15 +22,23 @@ function CustomQRCode({
   const Logo = (image)
 
   console.log('value->', value)
-if(value==undefined){
-  return <></>
+if(value==undefined|| image==undefined){
+  return  <></>
 }
+const imageS= {src: image, height:20,width:20,excavate: false}
+const qrcode = (
+  <QRCodeCanvas
+    id="qrCode"
+    value={value}
+    size={288}
+    bgColor={"#00ff00"}
+    level={"M"}
+    imageSettings={imageS}
+  />
+);
   return (
-    <QRCode uri={value}
-                size={288}
-                ecl="M"
-                clearArea={!!(imagePosition === 'center' && image)}
-              />)
+ 
+    qrcode)
 
 }
 
