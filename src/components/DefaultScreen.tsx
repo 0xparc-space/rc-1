@@ -27,20 +27,12 @@ const DefaultScreen = () => {
         </div>
         <div className="flex justify-between mt-6 py-4">
           <div className="flex justify-start items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6 text-neutral-300 mr-2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
-              />
-            </svg>
+            <img
+              className="h-5 w-5 mr-3"
+              src="/src/assets/wallet.svg"
+              alt="globe"
+            />
+
             <p>Your first Web3 Wallet</p>
           </div>
           <button
@@ -51,20 +43,11 @@ const DefaultScreen = () => {
         </div>
         <div className="flex justify-between py-4">
           <div className="flex justify-start items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6 text-neutral-300 mr-2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
-              />
-            </svg>
+            <img
+              className="h-5 w-5 mr-3"
+              src="/src/assets/globe.svg"
+              alt="globe"
+            />
             <p>Explore more about Web3</p>
           </div>
           <button
