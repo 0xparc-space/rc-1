@@ -3,12 +3,13 @@ import { useAccount } from "wagmi";
 import ProfileContext from "../utils/ProfileContext";
 import ConnectorModels from "../utils/connectorData";
 import { shortenAddress } from "../utils/shortenAddress";
+import DefaultScreen from "./DefaultScreen";
 
 const ViewComponent = () => {
   const { address, isConnecting, isConnected } = useAccount();
   const profile = useContext(ProfileContext);
 
-  return (
+  return isConnected || isConnecting ? (
     <>
       <div className="w-full p-7 h-full flex flex-col justify-center items-center">
         {/* logo of the connector */}
@@ -63,6 +64,8 @@ const ViewComponent = () => {
         )}
       </div>
     </>
+  ) : (
+    <DefaultScreen />
   );
 };
 
