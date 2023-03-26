@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,8 +9,7 @@ export default defineConfig({
     // Alternatively, we could add `<script>window.global = window;</script>` to index.html.
     // https://github.com/vitejs/vite/discussions/5912
     global: {},
-    'global.WebSocket': 'globalThis.WebSocket',
-    'process.env': {},
+    "global.WebSocket": "globalThis.WebSocket",
+    "process.env": {},
   },
-  publicDir: 'src/assets',
-})
+});

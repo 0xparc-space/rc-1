@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useContext, useState } from "react";
 import { useAccount, useDisconnect, useEnsAvatar } from "wagmi";
-import { ProfileContext } from "../utils/ProfileContext";
+import ProfileContext from "../utils/ProfileContext";
 
 const AccountModal = ({
   show,
@@ -12,7 +12,7 @@ const AccountModal = ({
 }) => {
   const { disconnect } = useDisconnect();
   const { address } = useAccount();
-  const { profile, setProfile } = useContext(ProfileContext);
+  const profile = useContext(ProfileContext);
 
   const { data, isError } = useEnsAvatar({ address: address });
 

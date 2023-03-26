@@ -1,15 +1,19 @@
-import { ProfileContext } from "../utils/ProfileContext";
+import ProfileContext from "../utils/ProfileContext";
 import { useContext } from "react";
 
 const DefaultScreen = () => {
-  const { profile } = useContext(ProfileContext);
+  const profile = useContext(ProfileContext);
   const radius = ["rounded-none", "rounded-md", "rounded-lg", "rounded-2xl"][
     profile.radius
   ];
   return (
-    <div className="h-full p-5 relative dark:divide-white">
+    <div className="h-full w-full p-5 relative dark:divide-white">
       <div className="absolute top-0 right-0 z-10">
-        <img src="/src/assets/illustration.svg" alt="illustration" />
+        <img
+          src="/assets/illustration.svg"
+          className="h-60"
+          alt="illustration"
+        />
       </div>
       <div className="flex-col justify-start items-center divide-y divide-y-black dark:divide-white dark:divide-opacity-10 divide-opacity-10">
         <div className="z-40 mt-24">
@@ -29,10 +33,9 @@ const DefaultScreen = () => {
           <div className="flex justify-start items-center">
             <img
               className="h-5 w-5 mr-3"
-              src="/src/assets/wallet.svg"
+              src="/assets/wallet.svg"
               alt="globe"
             />
-
             <p>Your first Web3 Wallet</p>
           </div>
           <button
@@ -43,11 +46,10 @@ const DefaultScreen = () => {
         </div>
         <div className="flex justify-between py-4">
           <div className="flex justify-start items-center">
-            <img
-              className="h-5 w-5 mr-3"
-              src="/src/assets/globe.svg"
-              alt="globe"
-            />
+            <svg
+              className="h-5 w-5 mr-3 stroke-white"
+              href="/assets/globe.svg"
+            ></svg>
             <p>Explore more about Web3</p>
           </div>
           <button

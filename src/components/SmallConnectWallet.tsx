@@ -3,12 +3,10 @@ import { useConnect } from "wagmi";
 import ConnectorBox from "./Connector";
 import { defaultConnectors, otherConnectors } from "./Connectors";
 import DefaultScreen from "./DefaultScreen";
-import Metamask from "./Metamask";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "../utils/useIsMobile";
-import Coinbase from "./Coinbase";
 
-const SmallConnectWallet = () => {
+const SmallView = () => {
   const { connectors, error } = useConnect();
   // TODO selectedTab is the string state value for the selected Connector
   const [selectedTab, setSelectedTab] = useState("home");
@@ -123,14 +121,11 @@ const SmallConnectWallet = () => {
                       {error && <div>{error.message}</div>}
                     </li>
                   </ul>
-                ) : // TODO @vhawk19 do this for every connector based on the names defined on the Connector.tsx file
-                selectedTab === "metamask" ? (
-                  <Metamask />
-                ) : selectedTab === "defaultscreen" ? (
+                ) : // TODO come back here to add metamask and coinbase
+                selectedTab === "metamask" ? null : selectedTab ===
+                  "defaultscreen" ? (
                   <DefaultScreen />
-                ) : selectedTab === "coinbase" ? (
-                  <Coinbase />
-                ) : null}
+                ) : selectedTab === "coinbase" ? null : null}
               </div>
               {selectedTab !== "defaultscreen" && (
                 <div className="flex justify-between items-center p-4 bg-gray-100">
@@ -153,8 +148,4 @@ const SmallConnectWallet = () => {
   );
 };
 
-const TabList = () => {
-  return <></>;
-};
-
-export default SmallConnectWallet;
+export default SmallView;
