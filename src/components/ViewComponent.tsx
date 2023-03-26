@@ -24,7 +24,7 @@ const ViewComponent = () => {
             : isConnecting
             ? "Opening "
             : "Failed to connect to "}
-          {ConnectorModels[profile.tab].name}
+          {!isConnected && ConnectorModels[profile.tab].name}
         </p>
 
         <p className="text-xs text-center opacity-50 mt-1">

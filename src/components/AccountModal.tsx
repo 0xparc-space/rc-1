@@ -35,7 +35,7 @@ const AccountModal = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black backdrop-blur-2xl bg-opacity-30" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -49,7 +49,7 @@ const AccountModal = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-80 max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-dark-neutral-0 shadow-xl transition-all">
+                <Dialog.Panel className="w-80 max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-dark-neutral-0 shadow-2xl transition-all">
                   <div className="flex w-full space-x-2 p-4 justify-between items-start">
                     {data ? (
                       <img
@@ -58,7 +58,7 @@ const AccountModal = ({
                       ></img>
                     ) : (
                       <img
-                        src={"/src/assets/gra.png"}
+                        src={"/assets/gra.png"}
                         className="h-16 w-16 rounded-full bg-gray-300"
                       ></img>
                     )}
@@ -70,7 +70,7 @@ const AccountModal = ({
                             setShow(false);
                           }, 300);
                         }}
-                        className="rounded-full p-1 cursor-pointer bg-gray-100 opacity-30"
+                        className="rounded-full p-1 cursor-pointer bg-white opacity-30 hover:bg-gray-500"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ const AccountModal = ({
 
                       <div
                         onClick={() => setShow(false)}
-                        className="rounded-full p-1 cursor-pointer bg-gray-100 opacity-30"
+                        className="rounded-full p-1 cursor-pointer bg-white opacity-30 hover:bg-gray-500"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ const AccountModal = ({
                       <li className="flex my-2 justify-between items-center">
                         <div className="flex w-full  justify-start mt-2 items-center">
                           <img
-                            src="/src/assets/Ethereum.svg"
+                            src="/assets/Ethereum.svg"
                             className="h-7 w-7 rounded-full bg-gray-300"
                           ></img>
                           <div className="flex ml-2 flex-col  justify-start items-start">
@@ -153,7 +153,7 @@ const AccountModal = ({
                       <li className="flex mt-4 justify-between items-center">
                         <div className="flex w-full justify-start items-center">
                           <img
-                            src="/src/assets/matic.svg"
+                            src="/assets/matic.svg"
                             className="h-7 w-7 rounded-full bg-gray-300"
                           ></img>
                           <div className="flex ml-2 flex-col justify-start items-start">

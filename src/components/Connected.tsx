@@ -47,9 +47,9 @@ export const ConnectedInsideModal = () => {
 
 const Connected = () => {
   const { address } = useAccount();
-  const { data, isLoading, isError } = useEnsName({ address: address });
+  const { data, isError } = useEnsName({ address: address });
   const { data: balance } = useBalance({ address: address });
-  const { chain, chains } = useNetwork();
+  const { chains } = useNetwork();
 
   const [selectedChain, setSelectedChain] = useState<Chain>(chains[0]);
 
@@ -61,11 +61,11 @@ const Connected = () => {
         <Listbox value={selectedChain} onChange={setSelectedChain}>
           <Listbox.Button
             className={
-              "relative w-[160px] flex justify-between items-center cursor-default truncate whitespace-nowrap rounded-lg bg-white dark:bg-dark-neutral-0 p-3 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+              "relative w-[160px] pointer-cursor flex justify-between items-center cursor-default truncate whitespace-nowrap rounded-lg bg-white dark:bg-dark-neutral-0 p-3 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
             }
           >
-            <div className="flex w-full justify-start items-center">
-              <img src="/src/assets/Ethereum.svg" className="h-5 w-5 mr-2" />
+            <div className="flex w-full justify-start items-center text-black dark:text-white">
+              <img src="/assets/Ethereum.svg" className="h-5 w-5 mr-2" />
               {selectedChain.name}
             </div>
             <svg
@@ -74,7 +74,7 @@ const Connected = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              className="w-5 h-5"
+              className="w-5 h-5 text-black dark:text-white"
             >
               <path
                 stroke-linecap="round"
@@ -98,9 +98,9 @@ const Connected = () => {
                         value={chain}
                         disabled={chain.network === "0"}
                       >
-                        <div className="flex w-full justify-start items-center">
+                        <div className="flex w-full justify-start items-center text-black dark:text-white">
                           <img
-                            src={`/src/assets/${chain.network}.svg`}
+                            src={`/assets/${chain.network}.svg`}
                             className="h-5 w-5 mr-2"
                           />
                           {chain.name}
@@ -117,10 +117,10 @@ const Connected = () => {
         onClick={() => setShow(true)}
         className="flex cursor-pointer justify-between h-12 bg-[#EDF0F4] dark:bg-dark-neutral-0 rounded-xl shadow-sm items-center"
       >
-        <p className="text-sm font-normal m-2">{`${Number(
+        <p className="text-sm font-normal m-2 dark:text-white">{`${Number(
           balance?.formatted
         ).toPrecision(3)} ${balance?.symbol}`}</p>
-        <div className="bg-white dark:bg-dark-neutral-200 rounded-xl shadow-sm m-1 p-2">
+        <div className="bg-white dark:bg-dark-neutral-200 text-black dark:text-white rounded-xl shadow-sm m-1 p-2">
           {data && !isError ? data : shortenAddress(address)}
         </div>
       </div>

@@ -1,16 +1,15 @@
-import { Tab } from "@headlessui/react";
-import { useConnect } from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 import { defaultConnectors, otherConnectors } from "./Connectors";
 import ConnectorBox from "./Connector";
-import DefaultScreen from "./DefaultScreen";
-import WalletConnectDetail from "./WalletConnectDetail";
 import { useContext } from "react";
 import ProfileContext from "../utils/ProfileContext";
 import ViewComponent from "./ViewComponent";
 import clsx from "clsx";
+import Connected from "./Connected";
 
 const LargeView = () => {
   const { connectors, error } = useConnect();
+  const { connector, isConnected } = useAccount();
 
   const { dark, radius, tab, setProfile } = useContext(ProfileContext);
 
@@ -25,6 +24,7 @@ const LargeView = () => {
         )}
         style={{ backgroundImage: `url(assets/banner.png)` }}
       >
+        {isConnected && <Connected />}
         <div className={`h-full inset-0 overflow-y-auto ${dark ? "dark" : ""}`}>
           <div className="flex min-h-full items-center justify-center text-center">
             <div>
@@ -62,15 +62,16 @@ const LargeView = () => {
                         {connectors
                           .filter((x) => defaultConnectors.includes(x.id))
                           .map((defaultConnector, idx) => (
-                            <li
+                            <button
+                              disabled={defaultConnector !== connector}
                               key={idx}
                               onClick={() => setProfile({ tab: idx })}
-                              className="p-0 cursor-pointer border-0 active:border-0 disabled:opacity-50"
+                              className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
                             >
                               <ConnectorBox
                                 connector={defaultConnector}
                               ></ConnectorBox>
-                            </li>
+                            </button>
                           ))}
 
                         {error && <div>{error.message}</div>}
@@ -82,15 +83,16 @@ const LargeView = () => {
                         {connectors
                           .filter((x) => otherConnectors.includes(x.id))
                           .map((otherConnector, idx) => (
-                            <li
+                            <button
+                              disabled={otherConnector !== connector}
                               key={idx}
                               onClick={() => setProfile({ tab: idx })}
-                              className="p-0 cursor-pointer border-0 active:border-0 disabled:opacity-50"
+                              className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
                             >
                               <ConnectorBox
                                 connector={otherConnector}
                               ></ConnectorBox>
-                            </li>
+                            </button>
                           ))}
 
                         {error && <div>{error.message}</div>}
