@@ -6,6 +6,7 @@ import ProfileContext from "../utils/ProfileContext";
 import ViewComponent from "./ViewComponent";
 import clsx from "clsx";
 import Connected from "./Connected";
+import { useIsMobile } from "../utils/useIsMobile";
 
 const LargeView = () => {
   const { connectors, error } = useConnect();

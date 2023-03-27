@@ -4,13 +4,35 @@ import ProfileContext from "../utils/ProfileContext";
 import ConnectorModels from "../utils/connectorData";
 import { shortenAddress } from "../utils/shortenAddress";
 import DefaultScreen from "./DefaultScreen";
+import { useIsMobile } from "../utils/useIsMobile";
 
 const ViewComponent = () => {
   const { address, isConnecting, isConnected } = useAccount();
   const profile = useContext(ProfileContext);
 
+  const isMobile = useIsMobile();
+
   return isConnected || isConnecting ? (
     <>
+      {/* back button */}
+      {isMobile && (
+        <div className="flex w-8 h-8 p-2 bg-gray-100 rounded-full justify-start items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 opacity-90 font-normal"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+            />
+          </svg>
+        </div>
+      )}
       <div className="w-full p-7 h-full flex flex-col justify-center items-center">
         {/* logo of the connector */}
         <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">

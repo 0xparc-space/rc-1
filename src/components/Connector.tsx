@@ -26,7 +26,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
 
   const img = getImageName(connector.id);
 
-  if (profile.dark) {
+  if (profile.index === 1) {
     return (
       <>
         <div
@@ -36,7 +36,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
               connect({ connector });
             }
           }}
-          className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-transparent hover:bg-[#EDF0F4] dark:hover:bg-dark-neutral-200 border-0"
+          className="text-sm w-full md:w-44 flex items-center rounded-lg justify-start p-1 bg-transparent hover:bg-[#EDF0F4] dark:hover:bg-dark-neutral-200 border-0"
         >
           <div className="h-7 w-7 rounded-xl mr-1 bg-neutral-200">
             <img src={img} width={28} />
@@ -59,7 +59,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
             connect({ connector });
           }
         }}
-        className="text-sm flex items-center rounded-lg justify-start p-1 w-44 bg-transparent hover:bg-[#EDF0F4] dark:hover:bg-dark-neutral-200 border-0"
+        className="text-sm flex items-center rounded-lg justify-start p-1 w-full md:w-44 bg-transparent hover:bg-[#EDF0F4] dark:hover:bg-dark-neutral-200 border-0"
       >
         <div className="h-7 w-7 rounded-xl mr-1 bg-dark-neutral-200">
           <img src={img} width={28} />
