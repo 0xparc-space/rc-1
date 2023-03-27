@@ -8,22 +8,24 @@ import { useIsMobile } from "../utils/useIsMobile";
 
 const ViewComponent = () => {
   const { address, isConnecting, isConnected } = useAccount();
-  const profile = useContext(ProfileContext);
-
+  const { tab, dark, setProfile } = useContext(ProfileContext);
   const isMobile = useIsMobile();
 
   return isConnected || isConnecting ? (
     <>
       {/* back button */}
       {isMobile && (
-        <div className="flex w-8 h-8 p-2 bg-gray-100 rounded-full justify-start items-center">
+        <div
+          onClick={() => setProfile({ tab: 9 })}
+          className="flex m-3 w-10 h-10 p-2 bg-gray-100 dark:bg-gray-800 dark:bg-opacity-40 rounded-full justify-start items-center"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            className="w-6 h-6 opacity-90 font-normal"
+            className="w-8 h-8 opacity-90 font-normal text-black dark:text-white "
           >
             <path
               stroke-linecap="round"
@@ -33,10 +35,10 @@ const ViewComponent = () => {
           </svg>
         </div>
       )}
-      <div className="w-full p-7 h-full flex flex-col justify-center items-center">
+      <div className="w-full h-[300px] p-7 text-black dark:text-white flex flex-col justify-center items-center">
         {/* logo of the connector */}
         <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
-          <img src={ConnectorModels[profile.tab].img} className="h-20 w-20" />
+          <img src={ConnectorModels[tab].img} className="h-20 w-20" />
         </div>
 
         {/* status before connection */}
@@ -46,7 +48,7 @@ const ViewComponent = () => {
             : isConnecting
             ? "Opening "
             : "Failed to connect to "}
-          {!isConnected && ConnectorModels[profile.tab].name}
+          {!isConnected && ConnectorModels[tab].name}
         </p>
 
         <p className="text-xs text-center opacity-50 mt-1">
@@ -54,17 +56,13 @@ const ViewComponent = () => {
             ? ""
             : isConnecting
             ? "Confirm connection"
-            : `Make sure you have the ${
-                ConnectorModels[profile.tab].name
-              } extension installed and retry`}
+            : `Make sure you have the ${ConnectorModels[tab].name} extension installed and retry`}
         </p>
 
         {isConnecting && (
           <img
-            className="h-5 w-5"
-            src={
-              profile.dark ? "assets/white-load.svg" : "assets/black-load.svg"
-            }
+            className="h-5 w-5 mt-4"
+            src={dark ? "assets/white-load.svg" : "assets/black-load.svg"}
           />
         )}
 
