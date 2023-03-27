@@ -1,9 +1,7 @@
 import { useAccount, useConnect } from "wagmi";
 import ConnectorBox from "./Connector";
 import { defaultConnectors, otherConnectors } from "./Connectors";
-import DefaultScreen from "./DefaultScreen";
 import { useContext } from "react";
-import { useIsMobile } from "../utils/useIsMobile";
 import ProfileContext from "../utils/ProfileContext";
 import clsx from "clsx";
 import ViewComponent from "./ViewComponent";
@@ -21,7 +19,7 @@ const CompactView = () => {
     <>
       <div
         className={clsx(
-          "w-4/6 bg-cover bg-no-repeat h-full ",
+          "w-[50%] m-3 rounded-2xl bg-cover bg-no-repeat h-full ",
           dark ? "dark" : ""
         )}
         style={{ backgroundImage: `url(assets/banner.png)` }}

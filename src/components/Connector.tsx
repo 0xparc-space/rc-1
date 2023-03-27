@@ -1,7 +1,6 @@
 import { Connector, useAccount, useConnect } from "wagmi";
 import ProfileContext from "../utils/ProfileContext";
 import { useContext } from "react";
-import ConnectorModels from "../utils/connectorData";
 
 const getImageName = (text: string) => {
   const imageMap = new Map([

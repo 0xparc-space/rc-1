@@ -7,8 +7,8 @@ function ComponentBuilderSection() {
   // const [profile, setProfile] = useState<Partial<Profile>>();
 
   return (
-    <div className="w-2/6 h-full bg-white">
-      <div className="h-fit w-full bg-gray-100">
+    <div className="w-[50%] m-3 rounded-2xl h-full bg-white">
+      <div className="h-fit w-full rounded-t-2xl bg-gray-100">
         <div className="flex p-8 space-x-2">
           <div className="w-fit text-center px-4 py-1 rounded-full bg-light-neutral-300">
             <p className="font-medium">EVM</p>

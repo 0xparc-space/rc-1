@@ -6,7 +6,6 @@ import ProfileContext from "../utils/ProfileContext";
 import ViewComponent from "./ViewComponent";
 import clsx from "clsx";
 import Connected from "./Connected";
-import { useIsMobile } from "../utils/useIsMobile";
 
 const LargeView = () => {
   const { connectors, error } = useConnect();
@@ -20,7 +19,7 @@ const LargeView = () => {
     <>
       <div
         className={clsx(
-          "w-4/6 bg-cover bg-no-repeat h-full ",
+          "w-[50%] m-3 rounded-2xl bg-cover bg-no-repeat h-full ",
           dark ? "dark" : ""
         )}
         style={{ backgroundImage: `url(assets/banner.png)` }}
