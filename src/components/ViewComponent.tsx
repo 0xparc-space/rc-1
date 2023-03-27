@@ -35,7 +35,7 @@ const ViewComponent = () => {
           </svg>
         </div>
       )}
-      <div className="w-full h-[300px] p-7 text-black dark:text-white flex flex-col justify-center items-center">
+      <div className="w-full p-7 text-black dark:text-white flex flex-col justify-center items-center">
         {/* logo of the connector */}
         <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
           <img src={ConnectorModels[tab].img} className="h-20 w-20" />
