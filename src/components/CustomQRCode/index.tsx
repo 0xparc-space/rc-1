@@ -1,15 +1,5 @@
 import { CustomQRCodeProps } from "./types";
-import {
-  QRCodeContainer,
-  LogoContainer,
-  LogoIcon,
-  QRPlaceholder,
-  QRCodeContent,
-} from "./styles";
 
-import { AnimatePresence, motion } from "framer-motion";
-
-import { QRCode } from "./QRCode";
 import { QRCodeCanvas } from "qrcode.react";
 
 function CustomQRCode({

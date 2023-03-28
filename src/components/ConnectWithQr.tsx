@@ -113,7 +113,7 @@ const ConnectWithQRCode = ({ connectorId }) => {
           setConnectorUri(p.qrUrl);
         });
         try {
-          await connectWallet(c);
+          await connectWallet(connector);
         } catch (err) {
           //   context.debug(
           //     <>

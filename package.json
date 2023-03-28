@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.10",
+    "@wagmi/connectors": "^0.3.10",
     "alchemy-sdk": "^2.6.2",
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
