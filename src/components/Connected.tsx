@@ -47,9 +47,11 @@ export const ConnectedInsideModal = () => {
 
 const Connected = () => {
   const { address } = useAccount();
-  const { data, isError } = useEnsName({ address: address });
+  const { data: ensName, isError } = useEnsName({ address: address });
   const { data: balance } = useBalance({ address: address });
   const { chains } = useNetwork();
+
+  console.log(ensName)
 
   const [selectedChain, setSelectedChain] = useState<Chain>(chains[0]);
 
@@ -121,7 +123,7 @@ const Connected = () => {
           balance?.formatted
         ).toPrecision(3)} ${balance?.symbol}`}</p>
         <div className="bg-white dark:bg-dark-neutral-200 text-black dark:text-white rounded-xl shadow-sm m-1 p-2">
-          {data && !isError ? data : shortenAddress(address)}
+          {ensName && !isError ? ensName : shortenAddress(address)}
         </div>
       </div>
 

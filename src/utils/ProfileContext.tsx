@@ -6,6 +6,7 @@ export type Profile = {
   dark: boolean;
   index: number;
   tab: number;
+  isModalOpen: boolean;
 
   setProfile: Dispatch<React.SetStateAction<Partial<Profile>>>;
 };
@@ -16,6 +17,7 @@ const ProfileContext = createContext<Profile>({
   dark: true,
   index: 0,
   tab: 0,
+  isModalOpen: false,
   setProfile: () => {},
 });
 

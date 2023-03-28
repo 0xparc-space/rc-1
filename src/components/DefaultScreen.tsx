@@ -1,8 +1,10 @@
 import ProfileContext from "../utils/ProfileContext";
 import { useContext } from "react";
+import { getBackgroundColor } from "../utils/accentColor";
 
 const DefaultScreen = () => {
   const profile = useContext(ProfileContext);
+  console.log(profile)
   const radius = ["rounded-none", "rounded-md", "rounded-lg", "rounded-2xl"][
     profile.radius
   ];
@@ -39,7 +41,7 @@ const DefaultScreen = () => {
             <p>Your first Web3 Wallet</p>
           </div>
           <button
-            className={`bg-[#EDF0F4] dark:bg-dark-neutral-200 rounded-full text-xs px-2 py-1 ${radius}`}
+            className={`${getBackgroundColor(profile.color)} rounded-full text-xs px-2 py-1 ${radius}`}
           >
             Get Started
           </button>
@@ -53,7 +55,7 @@ const DefaultScreen = () => {
             <p>Explore more about Web3</p>
           </div>
           <button
-            className={`bg-[#EDF0F4] dark:bg-dark-neutral-200 rounded-full text-xs px-2 py-1 ${radius}`}
+            className={`${getBackgroundColor(profile.color)} rounded-full text-xs px-2 py-1 ${radius}`}
           >
             Learn More
           </button>
