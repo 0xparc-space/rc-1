@@ -5,6 +5,7 @@ import ConnectorModels from "../utils/connectorData";
 import { shortenAddress } from "../utils/shortenAddress";
 import DefaultScreen from "./DefaultScreen";
 import { useIsMobile } from "../utils/useIsMobile";
+import ConnectWithQRCode from "./ConnectWithQr";
 
 const ViewComponent = () => {
   const { address, isConnecting, isConnected } = useAccount();
@@ -58,6 +59,10 @@ const ViewComponent = () => {
             ? "Confirm connection"
             : `Make sure you have the ${ConnectorModels[tab].name} extension installed and retry`}
         </p>
+
+        {ConnectorModels[tab].hasQR && isConnecting && (
+          <ConnectWithQRCode connectorId={"walletConnect"} />
+        )}
 
         {isConnecting && (
           <img
