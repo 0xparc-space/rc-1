@@ -12,6 +12,7 @@ const ProfileContextInitializer = ({
     dark: true,
     index: 0,
     tab: 0,
+    isModalOpen: false,
     setProfile: (profile) => {
       setProfile((prevProfile) => ({ ...prevProfile, ...profile }));
     },

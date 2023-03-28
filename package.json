@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.10",
+    "alchemy-sdk": "^2.6.2",
     "clsx": "^1.2.1",
+    "dotenv": "^16.0.3",
     "ethers": "^5.7.2",
     "framer-motion": "^10.8.4",
     "qrcode": "^1.5.1",

@@ -1,6 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config()
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -9,7 +10,10 @@ export default defineConfig({
     // Alternatively, we could add `<script>window.global = window;</script>` to index.html.
     // https://github.com/vitejs/vite/discussions/5912
     global: {},
-    "global.WebSocket": "globalThis.WebSocket",
-    "process.env": {},
+    'global.WebSocket': 'globalThis.WebSocket',
+    'process.env': {
+      ALCHEMY_API_KEY: process.env['ALCHEMY_API_KEY'],
+      WALLET_CONNECT_PROJECT_ID: process.env['WALLET_CONNECT_PROJECT_ID'],
+    },
   },
-});
+})
