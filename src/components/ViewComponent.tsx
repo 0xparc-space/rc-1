@@ -1,16 +1,22 @@
 import { useContext } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 import ProfileContext from "../utils/ProfileContext";
 import ConnectorModels from "../utils/connectorData";
 import { shortenAddress } from "../utils/shortenAddress";
 import DefaultScreen from "./DefaultScreen";
 import { useIsMobile } from "../utils/useIsMobile";
+import setURIForWallet from "./ConnectWithQr";
 
 const ViewComponent = () => {
-  const { address, isConnecting, isConnected } = useAccount();
+  const {connectors} = useConnect();
+  const { address, isConnecting, isConnected, connector } = useAccount();
   const { tab, dark, setProfile } = useContext(ProfileContext);
   const isMobile = useIsMobile();
-
+  const setURI = async()=> {
+  if(tab==2){
+    await setURIForWallet(connector)
+  }
+}
   return isConnected || isConnecting ? (
     <>
       {/* back button */}

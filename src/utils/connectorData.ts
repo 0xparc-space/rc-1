@@ -1,49 +1,55 @@
 export type ConnectorModel = {
-  id: number;
-  name: string;
-  img: string;
-  hasQR: boolean;
-  isSupported: boolean;
-};
+  id: number
+  wagmiID: string
+  name: string
+  img: string
+  hasQR: boolean
+  isSupported: boolean
+}
 
 const ConnectorModels: ConnectorModel[] = [
   {
     id: 0,
-    name: "metamask",
-    img: "/assets/metamask.svg",
+    name: 'metaask',
+    wagmiID: 'metaMask',
+    img: '/assets/metamask.svg',
     hasQR: false,
     isSupported: true,
   },
   {
     id: 1,
-    name: "coinbase",
-    img: "/assets/coinbase.svg",
+    name: 'coinbase',
+    wagmiID: 'coinbaseWallet',
+    img: '/assets/coinbase.svg',
     hasQR: true,
     isSupported: true,
   },
   {
     id: 2,
-    name: "walletconnect",
-    img: "/assets/walletConnect.svg",
+    name: 'walletconnect',
+    wagmiID: 'walletConnect',
+    img: '/assets/walletConnect.svg',
     hasQR: true,
     isSupported: true,
   },
   {
     id: 3,
-    name: "hardware",
-    img: "/assets/ledger.svg",
+    name: 'hardware',
+    wagmiID: 'ledger',
+    img: '/assets/ledger.svg',
     hasQR: false,
     isSupported: true,
   },
   {
     id: 4,
-    name: "safe",
-    img: "/assets/safe.svg",
+    name: 'safe',
+    wagmiID: 'safe',
+    img: '/assets/safe.svg',
     hasQR: true,
     isSupported: false,
   },
-];
+]
 
-export const nameToID = (name: string) => {};
+export const nameToID = (name: string) => {}
 
-export default ConnectorModels;
+export default ConnectorModels
