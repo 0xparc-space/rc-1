@@ -74,7 +74,9 @@ const LargeView = () => {
                             .filter((x) => defaultConnectors.includes(x.id))
                             .map((defaultConnector, idx) => (
                               <button
-                                disabled={defaultConnector !== connector}
+                                disabled={
+                                  defaultConnector !== connector && isConnected
+                                }
                                 key={idx}
                                 onClick={() => setProfile({ tab: idx })}
                                 className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
@@ -95,7 +97,9 @@ const LargeView = () => {
                             .filter((x) => otherConnectors.includes(x.id))
                             .map((otherConnector, idx) => (
                               <button
-                                disabled={otherConnector !== connector}
+                                disabled={
+                                  otherConnector !== connector && isConnected
+                                }
                                 key={idx}
                                 onClick={() => setProfile({ tab: idx })}
                                 className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"

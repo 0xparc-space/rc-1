@@ -51,7 +51,7 @@ const Connected = () => {
   const { data: balance } = useBalance({ address: address });
   const { chains } = useNetwork();
 
-  console.log(ensName)
+  console.log(ensName);
 
   const [selectedChain, setSelectedChain] = useState<Chain>(chains[0]);
 

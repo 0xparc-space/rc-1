@@ -151,10 +151,10 @@ const ConnectWithQRCode = ({ connectorId }) => {
   let imageURI;
   switch (connectorId) {
     case "coinbaseWallet":
-      imageURI = "/src/assets/coinbase.svg";
+      imageURI = "/assets/coinbase.svg";
       break;
     case "walletConnect":
-      imageURI = "/src/assets/walletConnect.svg";
+      imageURI = "/assets/walletConnect.svg";
       break;
   }
   console.log("connector", connectorUri);

@@ -38,9 +38,11 @@ const ViewComponent = () => {
       )}
       <div className="w-full p-7 text-black dark:text-white flex flex-col justify-center items-center">
         {/* logo of the connector */}
-        <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
-          <img src={ConnectorModels[tab].img} className="h-20 w-20" />
-        </div>
+        {!ConnectorModels[tab].hasQR && (
+          <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
+            <img src={ConnectorModels[tab].img} className="h-20 w-20" />
+          </div>
+        )}
 
         {/* status before connection */}
         <p className="text-sm text-center mt-3">
@@ -52,6 +54,10 @@ const ViewComponent = () => {
           {!isConnected && ConnectorModels[tab].name}
         </p>
 
+        {ConnectorModels[tab].hasQR && isConnecting && (
+          <ConnectWithQRCode connectorId={ConnectorModels[tab].stringId} />
+        )}
+
         <p className="text-xs text-center opacity-50 mt-1">
           {address && isConnected
             ? ""
@@ -59,10 +65,6 @@ const ViewComponent = () => {
             ? "Confirm connection"
             : `Make sure you have the ${ConnectorModels[tab].name} extension installed and retry`}
         </p>
-
-        {ConnectorModels[tab].hasQR && isConnecting && (
-          <ConnectWithQRCode connectorId={"walletConnect"} />
-        )}
 
         {isConnecting && (
           <img
