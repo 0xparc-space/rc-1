@@ -1,78 +1,94 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useContext, useEffect, useState } from 'react'
-import { Chain, useAccount, useBalance, useDisconnect, useEnsAvatar, useEnsName, useNetwork } from 'wagmi'
-import ProfileContext from '../utils/ProfileContext'
-import { shortenAddress } from '../utils/shortenAddress'
-import { Alchemy, Network } from "alchemy-sdk";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useContext, useEffect, useState } from "react";
+import {
+  Chain,
+  useAccount,
+  useBalance,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useNetwork,
+} from "wagmi";
+import ProfileContext from "../utils/ProfileContext";
+import { shortenAddress } from "../utils/shortenAddress";
+import { Alchemy, Network, TokenMetadataResponse } from "alchemy-sdk";
+import { BigNumber, ethers } from "ethers";
 
-
-const mapProviderToAlchemyNetwork = (chain: Chain|undefined) =>{
-  if(chain===undefined){
+const mapProviderToAlchemyNetwork = (chain: Chain | undefined) => {
+  if (chain === undefined) {
     return Network.ETH_MAINNET;
   }
-  switch(chain.network) {
-    case 'mainnet':
+  switch (chain.network) {
+    case "mainnet":
       return Network.ETH_MAINNET;
-    case 'polygon':
+    case "polygon":
       return Network.MATIC_MAINNET;
-    case 'arbitrum':
+    case "arbitrum":
       return Network.ARB_MAINNET;
-    case 'optimism':
-      return Network.OPT_MAINNET;    
+    case "optimism":
+      return Network.OPT_MAINNET;
   }
-}
+};
 
 type TokenBalance = {
-  contractAddress: string;
-  tokenBalance: string|null;
-  error: string|null
-}
+  tokenContract: string;
+  tokenBalance: string;
+  tokenMetadata: TokenMetadataResponse;
+};
 
-const AccountModal =  ({
+const AccountModal = ({
   show,
   setShow,
 }: {
-  show: boolean
-  setShow: (show: boolean) => void
+  show: boolean;
+  setShow: (show: boolean) => void;
 }) => {
-  const { disconnect } = useDisconnect()
-  const { address } = useAccount()
-  const profile = useContext(ProfileContext)
-  const { chain, chains } = useNetwork()
+  const { disconnect } = useDisconnect();
+  const { address } = useAccount();
+  const profile = useContext(ProfileContext);
+  const { chain, chains } = useNetwork();
 
   const { data: ensAvatar, isError: ensAvatarError } = useEnsAvatar({
     address: address,
-  })
+  });
   const { data: ensName, isError: ensNameError } = useEnsName({
     address: address,
-  })
-  const { data: balance } = useBalance({ address: address })
+  });
+  const { data: balance } = useBalance({ address: address });
 
-  const [tokenResponse,setTokenReponse] = useState([{} as TokenBalance])
-
-  useEffect(()=>{
+  const [tokenResponse, setTokenReponse] = useState([{} as TokenBalance]);
+  useEffect(() => {
     const alchemyClient = new Alchemy({
-      apiKey: process.env['ALCHEMY_API_KEY'],
-      network: mapProviderToAlchemyNetwork(chain)
-    })
-    const fetchTokenBalances = async()=>{
-      const tokenResponse = await alchemyClient.core.getTokenBalances(address?address.toString():'')
-      setTokenReponse(tokenResponse.tokenBalances)
-    }
+      apiKey: process.env["ALCHEMY_API_KEY"],
+      network: mapProviderToAlchemyNetwork(chain),
+    });
+    const fetchTokenBalances = async () => {
+      const tokenResponse = await alchemyClient.core.getTokenBalances(
+        address ? address.toString() : ""
+      );
+      const tokenBalances = (await Promise.all(
+        tokenResponse.tokenBalances.map(async (x) => ({
+          tokenContract: x.contractAddress,
+          tokenBalance: BigNumber.from(x.tokenBalance).toString(),
+          tokenMetadata: await alchemyClient.core.getTokenMetadata(
+            x.contractAddress
+          ),
+        }))
+      )) as TokenBalance[];
+      setTokenReponse(tokenBalances);
+    };
 
-    fetchTokenBalances().catch(console.error)
-    console.log(address)
-  console.log('token reposse is',tokenResponse[0])
-  },[address])
-
-  const dark = profile.dark
+    fetchTokenBalances().catch(console.error);
+  }, [address]);
+  console.log(tokenResponse);
+  const dark = profile.dark;
 
   return address ? (
     <>
       <Transition show={show} as={Fragment}>
         <Dialog
           as="div"
-          className={`relative z-10 ${dark ? 'dark' : ''}`}
+          className={`relative z-10 ${dark ? "dark" : ""}`}
           onClose={() => setShow(false)}
         >
           <Transition.Child
@@ -107,17 +123,17 @@ const AccountModal =  ({
                       ></img>
                     ) : (
                       <img
-                        src={'/assets/gra.png'}
+                        src={"/assets/gra.png"}
                         className="h-16 w-16 rounded-full bg-gray-300"
                       ></img>
                     )}
                     <div className="flex justify-end items-center space-x-2">
                       <div
                         onClick={() => {
-                          disconnect()
+                          disconnect();
                           setTimeout(() => {
-                            setShow(false)
-                          }, 300)
+                            setShow(false);
+                          }, 300);
                         }}
                         className="rounded-full p-1 cursor-pointer bg-white opacity-30 hover:bg-gray-500"
                       >
@@ -177,7 +193,7 @@ const AccountModal =  ({
                       <p className="text-md dark:text-opacity font-medium mt-1 leading-6 text-gray-900 dark:text-white dark:opacity-80">
                         {`${Number(balance?.formatted).toPrecision(3)} ${
                           balance?.symbol
-                        }`}{' '}
+                        }`}{" "}
                       </p>
                     </div>
 
@@ -185,41 +201,32 @@ const AccountModal =  ({
                       <p className="text-sm dark:text-white opacity-60">
                         Assets
                       </p>
-                      <li className="flex my-2 justify-between items-center">
-                        <div className="flex w-full  justify-start mt-2 items-center">
-                          <img
-                            src="/assets/Ethereum.svg"
-                            className="h-7 w-7 rounded-full bg-gray-300"
-                          ></img>
-                          <div className="flex ml-2 flex-col  justify-start items-start">
-                            <p className="text-sm font-medium text-gray-900 dark:text-white dark:opacity-80">
-                              Ethereum
-                            </p>
-                            <p className="text-xs font-normal text-gray-900 dark:text-white dark:opacity-80">
-                              0.0511 ETH
-                            </p>
-                          </div>
-                        </div>
-                        <p className="text-sm dark:text-white">$1,120,12</p>
-                      </li>
-
-                      <li className="flex mt-4 justify-between items-center">
-                        <div className="flex w-full justify-start items-center">
-                          <img
-                            src="/assets/matic.svg"
-                            className="h-7 w-7 rounded-full bg-gray-300"
-                          ></img>
-                          <div className="flex ml-2 flex-col justify-start items-start">
-                            <p className="text-sm font-medium text-gray-900 dark:text-white dark:opacity-80">
-                              Matic
-                            </p>
-                            <p className="text-xs font-normal text-gray-900 dark:text-white dark:opacity-80">
-                              252001 MATIC
-                            </p>
-                          </div>
-                        </div>
-                        <p className="text-sm dark:text-white">$2,520,12</p>
-                      </li>
+                      {tokenResponse.length > 0 &&
+                        tokenResponse.map((token) => {
+                          if (token?.tokenMetadata?.name) {
+                            console.log("why come here? ");
+                            return (
+                              <li className="flex my-2 justify-between items-center">
+                                <div className="flex w-full  justify-start mt-2 items-center">
+                                  <img
+                                    src={token.tokenMetadata?.logo}
+                                    className="h-7 w-7 rounded-full bg-gray-300"
+                                  ></img>
+                                  <div className="flex ml-2 flex-col  justify-start items-start">
+                                    <p className="text-sm font-medium text-gray-900 dark:text-white dark:opacity-80">
+                                      {token.tokenMetadata.name}
+                                    </p>
+                                  </div>
+                                </div>
+                                <p className="text-xs font-normal text-gray-900 dark:text-white dark:opacity-80">
+                                  {token.tokenBalance}
+                                </p>
+                              </li>
+                            );
+                          } else {
+                            return null;
+                          }
+                        })}
                     </ul>
                   </div>
                 </Dialog.Panel>
@@ -231,7 +238,7 @@ const AccountModal =  ({
     </>
   ) : (
     <></>
-  )
-}
+  );
+};
 
-export default AccountModal
+export default AccountModal;

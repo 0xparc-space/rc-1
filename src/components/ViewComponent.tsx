@@ -38,7 +38,7 @@ const ViewComponent = () => {
       )}
       <div className="w-full p-7 text-black dark:text-white flex flex-col justify-center items-center">
         {/* logo of the connector */}
-        {!ConnectorModels[tab].hasQR && (
+        {!ConnectorModels[tab].hasQR && isConnected && (
           <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
             <img src={ConnectorModels[tab].img} className="h-20 w-20" />
           </div>

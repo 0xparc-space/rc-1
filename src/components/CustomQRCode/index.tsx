@@ -15,7 +15,7 @@ function CustomQRCode({
   if (value == undefined || image == undefined) {
     return <></>;
   }
-  const imageS = { src: image, height: 40, width: 40, excavate: true };
+  const imageS = { src: image, height: 40, width: 40, excavate: false };
   const qrcode = (
     <div className="bg-gray-200 dark:bg-black p-4 flex justify-center items-center w-max bg-opacity-40 dark:bg-opacity-50 rounded-2xl">
       <QRCodeCanvas
@@ -24,7 +24,7 @@ function CustomQRCode({
         size={180}
         bgColor={"white"}
         level={"M"}
-        imageSettings={imageS}
+        // imageSettings={imageS}
       />
     </div>
   );
