@@ -7,6 +7,7 @@ import ViewComponent from "./ViewComponent";
 import clsx from "clsx";
 import Connected from "./Connected";
 import ConnectWalletBtn from "./ConnectWalletBtn";
+import { motion } from "framer-motion";
 
 const LargeView = () => {
   const { connectors, error } = useConnect();
@@ -16,6 +17,20 @@ const LargeView = () => {
     useContext(ProfileContext);
 
   const pradius = ["none", "md", "lg", "2xl"][radius];
+
+  const list = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
+  const item = {
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 },
+    },
+    hidden: { opacity: 0, x: -100 },
+  };
 
   return (
     <>
@@ -39,7 +54,10 @@ const LargeView = () => {
             {isConnected && <Connected />}
             <div className="flex min-h-full items-center justify-center text-center">
               <div>
-                <div
+                <motion.div
+                  initial={{ scale: 0.4 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.7, type: "spring" }}
                   className={`flex w-[650px] h-[450px] overflow-hidden bg-white text-gray-900 dark:text-white dark:bg-dark-neutral-0 text-left align-middle shadow-xl rounded-${pradius} `}
                 >
                   <div className="flex-col border-r border-black dark:border-white border-opacity-10 dark:border-opacity-10 h-full ">
@@ -47,8 +65,11 @@ const LargeView = () => {
                       Connect a Wallet
                     </div>
                     <div className="p-4">
-                      <ul>
-                        <li className="p-0 cursor-pointer flex justify-start items-center border-0 rounded-full">
+                      <motion.ul variants={list}>
+                        <motion.li
+                          variants={item}
+                          className="p-0 cursor-pointer flex justify-start items-center border-0 rounded-full"
+                        >
                           <div className="flex w-8 h-8 rounded-full bg-white bg-opacity-20 justify-start items-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +86,7 @@ const LargeView = () => {
                               />
                             </svg>
                           </div>
-                        </li>
+                        </motion.li>
                         <p className="text-black dark:text-white opacity-60 text-xs mb-2 mt-4">
                           Popular
                         </p>
@@ -73,18 +94,26 @@ const LargeView = () => {
                           {connectors
                             .filter((x) => defaultConnectors.includes(x.id))
                             .map((defaultConnector, idx) => (
-                              <button
-                                disabled={
-                                  defaultConnector !== connector && isConnected
-                                }
-                                key={idx}
-                                onClick={() => setProfile({ tab: idx })}
-                                className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
+                              <motion.li
+                                animate={{ x: 0, opacity: 1 }}
+                                initial={{ x: -500, opacity: 0 }}
+                                transition={{ type: "tween", duration: 0.1 }}
+                                className="p-0"
                               >
-                                <ConnectorBox
-                                  connector={defaultConnector}
-                                ></ConnectorBox>
-                              </button>
+                                <button
+                                  disabled={
+                                    defaultConnector !== connector &&
+                                    isConnected
+                                  }
+                                  key={idx}
+                                  onClick={() => setProfile({ tab: idx })}
+                                  className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
+                                >
+                                  <ConnectorBox
+                                    connector={defaultConnector}
+                                  ></ConnectorBox>
+                                </button>
+                              </motion.li>
                             ))}
 
                           {error && <div>{error.message}</div>}
@@ -96,27 +125,34 @@ const LargeView = () => {
                           {connectors
                             .filter((x) => otherConnectors.includes(x.id))
                             .map((otherConnector, idx) => (
-                              <button
-                                disabled={
-                                  otherConnector !== connector && isConnected
-                                }
-                                key={idx}
-                                onClick={() => setProfile({ tab: idx })}
-                                className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
+                              <motion.li
+                                animate={{ x: 0, opacity: 1 }}
+                                initial={{ x: -500, opacity: 0 }}
+                                transition={{ type: "tween", duration: 0.1 }}
+                                className="p-0"
                               >
-                                <ConnectorBox
-                                  connector={otherConnector}
-                                ></ConnectorBox>
-                              </button>
+                                <button
+                                  disabled={
+                                    otherConnector !== connector && isConnected
+                                  }
+                                  key={idx}
+                                  onClick={() => setProfile({ tab: idx })}
+                                  className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
+                                >
+                                  <ConnectorBox
+                                    connector={otherConnector}
+                                  ></ConnectorBox>
+                                </button>
+                              </motion.li>
                             ))}
 
                           {error && <div>{error.message}</div>}
                         </div>
-                      </ul>
+                      </motion.ul>
                     </div>
                   </div>
                   <ViewComponent />
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
