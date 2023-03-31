@@ -23,15 +23,6 @@ const LargeView = () => {
     hidden: { opacity: 0 },
   };
 
-  const item = {
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 },
-    },
-    hidden: { opacity: 0, x: -100 },
-  };
-
   return (
     <>
       <div
@@ -67,7 +58,9 @@ const LargeView = () => {
                     <div className="p-4">
                       <motion.ul variants={list}>
                         <motion.li
-                          variants={item}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: 20 }}
                           className="p-0 cursor-pointer flex justify-start items-center border-0 rounded-full"
                         >
                           <div className="flex w-8 h-8 rounded-full bg-white bg-opacity-20 justify-start items-center">
@@ -95,9 +88,10 @@ const LargeView = () => {
                             .filter((x) => defaultConnectors.includes(x.id))
                             .map((defaultConnector, idx) => (
                               <motion.li
-                                animate={{ x: 0, opacity: 1 }}
-                                initial={{ x: -500, opacity: 0 }}
-                                transition={{ type: "tween", duration: 0.1 }}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ delay: idx * 0.1 }}
                                 className="p-0"
                               >
                                 <button

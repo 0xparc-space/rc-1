@@ -5,6 +5,7 @@ import { useContext } from "react";
 import ProfileContext from "../utils/ProfileContext";
 import clsx from "clsx";
 import ViewComponent from "./ViewComponent";
+import { motion } from "framer-motion";
 
 const CompactView = () => {
   const { connectors, error } = useConnect();
@@ -31,7 +32,12 @@ const CompactView = () => {
           )}
         >
           <div className="flex min-h-full items-center justify-center">
-            <div className="flex w-[330px] flex-col justify-center items-center overflow-hidden rounded-2xl bg-white dark:bg-dark-neutral-0 align-middle shadow-xl">
+            <motion.div
+              initial={{ scale: 0.4 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.7, type: "spring" }}
+              className="flex w-[330px] flex-col justify-center items-center overflow-hidden rounded-2xl bg-white dark:bg-dark-neutral-0 align-middle shadow-xl"
+            >
               {(!isConnected && !isConnecting) || tab >= 9 ? (
                 <div className="text-black w-full dark:text-white">
                   <div className="text-lg font-medium leading-6 outline-b outline-black dark:outline-white outline-opacity-30 p-4 mb-1 border-b border-opacity-10 dark:border-opacity-10 border-black dark:border-white">
@@ -66,16 +72,24 @@ const CompactView = () => {
                         {connectors
                           .filter((x) => defaultConnectors.includes(x.id))
                           .map((defaultConnector, idx) => (
-                            <button
-                              // disabled={defaultConnector !== connector}
+                            <motion.li
                               key={idx}
-                              onClick={() => setProfile({ tab: idx })}
-                              className="p-0 cursor-pointer bg-transparent border-0 outline-none active:border-0 disabled:opacity-50"
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: 20 }}
+                              transition={{ delay: idx * 0.1 }}
                             >
-                              <ConnectorBox
-                                connector={defaultConnector}
-                              ></ConnectorBox>
-                            </button>
+                              <button
+                                // disabled={defaultConnector !== connector}
+                                key={idx}
+                                onClick={() => setProfile({ tab: idx })}
+                                className="p-0 cursor-pointer bg-transparent border-0 outline-none active:border-0 disabled:opacity-50"
+                              >
+                                <ConnectorBox
+                                  connector={defaultConnector}
+                                ></ConnectorBox>
+                              </button>
+                            </motion.li>
                           ))}
 
                         {error && <div>{error.message}</div>}
@@ -87,16 +101,24 @@ const CompactView = () => {
                         {connectors
                           .filter((x) => otherConnectors.includes(x.id))
                           .map((otherConnector, idx) => (
-                            <button
-                              // disabled={otherConnector !== connector}
+                            <motion.li
                               key={idx}
-                              onClick={() => setProfile({ tab: idx })}
-                              className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: 20 }}
+                              transition={{ delay: idx * 0.1 }}
                             >
-                              <ConnectorBox
-                                connector={otherConnector}
-                              ></ConnectorBox>
-                            </button>
+                              <button
+                                // disabled={otherConnector !== connector}
+                                key={idx}
+                                onClick={() => setProfile({ tab: idx })}
+                                className="p-0 cursor-pointer bg-transparent border-0 active:border-0 disabled:opacity-50"
+                              >
+                                <ConnectorBox
+                                  connector={otherConnector}
+                                ></ConnectorBox>
+                              </button>
+                            </motion.li>
                           ))}
 
                         {error && <div>{error.message}</div>}
@@ -107,7 +129,7 @@ const CompactView = () => {
               ) : (
                 <ViewComponent />
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
