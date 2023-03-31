@@ -6,6 +6,7 @@ import { shortenAddress } from "../utils/shortenAddress";
 import DefaultScreen from "./DefaultScreen";
 import { useIsMobile } from "../utils/useIsMobile";
 import ConnectWithQRCode from "./ConnectWithQr";
+import { motion } from "framer-motion";
 
 const ViewComponent = () => {
   const { address, isConnecting, isConnected } = useAccount();
@@ -36,7 +37,12 @@ const ViewComponent = () => {
           </svg>
         </div>
       )}
-      <div className="w-full p-7 text-black dark:text-white flex flex-col justify-center items-center">
+      <motion.div
+        initial={{ x: -20 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.7, type: "spring" }}
+        className="w-full p-7 text-black dark:text-white flex flex-col justify-center items-center"
+      >
         {/* logo of the connector */}
         {!ConnectorModels[tab].hasQR && isConnected && (
           <div className="h-20 w-20 rounded-xl mr-1 bg-transparent">
@@ -89,7 +95,7 @@ const ViewComponent = () => {
             />
           </svg>
         )}
-      </div>
+      </motion.div>
     </>
   ) : (
     <DefaultScreen />
