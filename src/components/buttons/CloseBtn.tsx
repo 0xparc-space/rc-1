@@ -2,19 +2,14 @@ import clsx from "clsx";
 import { useContext } from "react";
 import ProfileContext from "../../utils/ProfileContext";
 
-const CloseBtn = ({
-  classes,
-  onClick,
-}: {
-  classes: string;
-  onClick: () => boolean;
-}) => {
-  const { toggleModalOpen, isModalOpen } = useContext(ProfileContext);
+const CloseBtn = ({ classes }: { classes: string }) => {
+  const { setProfile } = useContext(ProfileContext);
+  const openModal = () => {
+    setProfile({ isModalOpen: false });
+  };
   return (
     <div
-      onClick={(e) => {
-        toggleModalOpen(isModalOpen);
-      }}
+      onClick={openModal}
       className={clsx(
         "bg-[#EDF0F4] bg-opacity-20 cursor-pointer hover:bg-opacity-60 p-1 rounded-full text-center text-black dark:text-white",
         classes
