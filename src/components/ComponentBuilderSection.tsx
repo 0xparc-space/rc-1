@@ -22,8 +22,8 @@ function ComponentBuilderSection() {
         </div>
         <div className="p-8">
           <p>
-            0xStardust is a library of beautifully crafted, ready to use react
-            components which are beautiful, functional and robust
+            A fully functional wallet connect customizable react compnent.
+            Currently supports Ethereum & Solana
           </p>
         </div>
       </div>

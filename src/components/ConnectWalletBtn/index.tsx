@@ -21,9 +21,7 @@ const ConnectWalletBtn = () => {
       transition={{ type: "spring", bounce: 0.6 }}
       type="button"
       onClick={openModal}
-      className={` ${getBackgroundColor(
-        color
-      )} ${selectedRadius} justify-center text-center font-medium text-base px-4 py-4 text-white hover:bg-[#0D5EBF] focus:bg-[#022759] focus:outline-none`}
+      className={`${selectedRadius} justify-center text-center font-medium bg-[#0D5EBF] text-base px-4 py-4 text-white hover:bg-[#0D5EBF] focus:bg-[#022759] focus:outline-none`}
     >
       Connect Wallet
     </motion.button>

@@ -40,8 +40,8 @@ const CompactView = () => {
             >
               {(!isConnected && !isConnecting) || tab >= 9 ? (
                 <div className="text-black w-full dark:text-white">
-                  <div className="text-lg font-medium leading-6 outline-b outline-black dark:outline-white outline-opacity-30 p-4 mb-1 border-b border-opacity-10 dark:border-opacity-10 border-black dark:border-white">
-                    Connect a Wallet
+                  <div className="text-lg font-bold leading-6 outline-b outline-black dark:outline-white outline-opacity-30 p-4 mb-1 border-b border-opacity-10 dark:border-opacity-10 border-black dark:border-white">
+                    Connect Wallet
                   </div>
                   <div className="p-4">
                     <ul>

@@ -8,6 +8,8 @@ import clsx from "clsx";
 import Connected from "./Connected";
 import ConnectWalletBtn from "./ConnectWalletBtn";
 import { motion } from "framer-motion";
+import CloseBtn from "./buttons/CloseBtn";
+import Modal from "@headlessui/react";
 
 const LargeView = () => {
   const { connectors, error } = useConnect();
@@ -22,6 +24,8 @@ const LargeView = () => {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   };
+
+  function handleClick() {}
 
   return (
     <>
@@ -44,12 +48,12 @@ const LargeView = () => {
             {" "}
             {isConnected && <Connected />}
             <div className="flex min-h-full items-center justify-center text-center">
-              <div>
+              <div className="relative">
                 <motion.div
                   initial={{ scale: 0.4 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.7, type: "spring" }}
-                  className={`flex w-[650px] h-[450px] overflow-hidden bg-white text-gray-900 dark:text-white dark:bg-dark-neutral-0 text-left align-middle shadow-xl rounded-${pradius} `}
+                  className={`flex relative w-[650px] h-[450px] overflow-hidden bg-white text-gray-900 dark:text-white dark:bg-dark-neutral-0 text-left align-middle shadow-xl rounded-${pradius} `}
                 >
                   <div className="flex-col border-r border-black dark:border-white border-opacity-10 dark:border-opacity-10 h-full ">
                     <div className="text-lg font-medium leading-6 outline-r outline-black dark:outline-white outline-opacity-30 p-4 mb-1 border-b border-opacity-10 dark:border-opacity-10 border-black dark:border-white">
@@ -63,22 +67,24 @@ const LargeView = () => {
                           exit={{ opacity: 0, x: 20 }}
                           className="p-0 cursor-pointer flex justify-start items-center border-0 rounded-full"
                         >
-                          <div className="flex w-8 h-8 rounded-full bg-white bg-opacity-20 justify-start items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke-width="1.5"
-                              stroke="currentColor"
-                              className="w-full h-full g-gray-10 rounded-full p-2  opacity-90 font-normal hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-105"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                              />
-                            </svg>
-                          </div>
+                          {tab !== 0 && (
+                            <div className="flex w-8 h-8 rounded-full bg-white bg-opacity-20 justify-start items-center">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                className="w-full h-full g-gray-10 rounded-full p-2  opacity-90 font-normal hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-105"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                                />
+                              </svg>
+                            </div>
+                          )}
                         </motion.li>
                         <p className="text-black dark:text-white opacity-60 text-xs mb-2 mt-4">
                           Popular
@@ -146,6 +152,10 @@ const LargeView = () => {
                     </div>
                   </div>
                   <ViewComponent />
+                  <CloseBtn
+                    onClick={() => false}
+                    classes="absolute z-50 top-2 right-2"
+                  />
                 </motion.div>
               </div>
             </div>

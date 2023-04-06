@@ -6,6 +6,7 @@ const ProfileContextInitializer = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [isModalOpen, setisModalOpen] = useState(false);
   const [profile, setProfile] = useState<Profile>({
     radius: 3,
     color: 0,
@@ -16,6 +17,7 @@ const ProfileContextInitializer = ({
     setProfile: (profile) => {
       setProfile((prevProfile) => ({ ...prevProfile, ...profile }));
     },
+    toggleModalOpen: (value: boolean) => setisModalOpen(!value),
   });
 
   return (

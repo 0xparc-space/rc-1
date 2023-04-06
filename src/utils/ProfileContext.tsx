@@ -9,6 +9,7 @@ export type Profile = {
   isModalOpen: boolean;
 
   setProfile: Dispatch<React.SetStateAction<Partial<Profile>>>;
+  toggleModalOpen: (open: boolean) => void;
 };
 
 const ProfileContext = createContext<Profile>({
@@ -19,6 +20,7 @@ const ProfileContext = createContext<Profile>({
   tab: 0,
   isModalOpen: false,
   setProfile: () => {},
+  toggleModalOpen: (open: boolean) => {},
 });
 
 export default ProfileContext;
