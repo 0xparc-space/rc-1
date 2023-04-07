@@ -3,6 +3,7 @@ import { shortenAddress } from "../utils/shortenAddress";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import AccountModal from "./AccountModal";
+import { motion } from "framer-motion";
 
 export const ConnectedInsideModal = () => {
   const { address, connector } = useAccount();
@@ -59,11 +60,14 @@ const Connected = () => {
 
   return address ? (
     <div className="flex fixed top-10 right-10 justify-end items-start space-x-3">
-      <div className="relative">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="relative cursor-pointer"
+      >
         <Listbox value={selectedChain} onChange={setSelectedChain}>
           <Listbox.Button
             className={
-              "relative w-[160px] pointer-cursor flex justify-between items-center cursor-default truncate whitespace-nowrap rounded-lg bg-white dark:bg-dark-neutral-0 p-3 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+              "relative cursor-pointer w-[160px] pointer-cursor flex justify-between items-center truncate whitespace-nowrap rounded-lg bg-white dark:bg-dark-neutral-0 p-3 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
             }
           >
             <div className="flex w-full justify-start items-center text-black dark:text-white">
@@ -114,8 +118,9 @@ const Connected = () => {
             </Listbox.Options>
           </Transition>
         </Listbox>
-      </div>
-      <div
+      </motion.div>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
         onClick={() => setShow(true)}
         className="flex cursor-pointer justify-between h-12 bg-[#EDF0F4] dark:bg-dark-neutral-0 rounded-xl shadow-sm items-center"
       >
@@ -125,7 +130,7 @@ const Connected = () => {
         <div className="bg-white dark:bg-dark-neutral-200 text-black dark:text-white rounded-xl shadow-sm m-1 p-2">
           {ensName && !isError ? ensName : shortenAddress(address)}
         </div>
-      </div>
+      </motion.div>
 
       <div>
         <AccountModal show={show} setShow={setShow} />
