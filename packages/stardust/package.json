@@ -1,0 +1,55 @@
+{
+  "name": "stardust",
+  "version": "0.0.3",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "rollup": "rollup -c",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@headlessui/react": "^1.7.10",
+    "ethers": "^5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "wagmi": "^0.12.4"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.10",
+    "@wagmi/connectors": "^0.3.12",
+    "alchemy-sdk": "^2.6.2",
+    "clsx": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "ethers": "^5.7.2",
+    "framer-motion": "^10.8.4",
+    "qrcode.react": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^3.20.2",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "wagmi": "^0.11.6"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/node": "^18.15.3",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tailwindcss": "^3.2.6",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  },
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "exports": "dist/esm/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts"
+}
