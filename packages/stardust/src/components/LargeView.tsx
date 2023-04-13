@@ -1,36 +1,36 @@
-import { useAccount, useConnect } from "wagmi";
-import { defaultConnectors, otherConnectors } from "./Connectors";
-import ConnectorBox from "./Connector";
-import { useContext, useState } from "react";
-import ProfileContext from "../utils/ProfileContext";
-import ViewComponent from "./ViewComponent";
-import clsx from "clsx";
-import Connected from "./Connected";
-import ConnectWalletBtn from "./ConnectWalletBtn";
-import { AnimatePresence, motion } from "framer-motion";
-import CloseBtn from "./buttons/CloseBtn";
-import Modal from "@headlessui/react";
+import { useAccount, useConnect } from 'wagmi'
+import { defaultConnectors, otherConnectors } from './Connectors'
+import ConnectorBox from './Connector'
+import { useContext, useState } from 'react'
+import ProfileContext from '../utils/ProfileContext'
+import ViewComponent from './ViewComponent'
+import clsx from 'clsx'
+import Connected from './Connected'
+import ConnectWalletBtn from './ConnectWalletBtn'
+import { AnimatePresence, motion } from 'framer-motion'
+import CloseBtn from './buttons/CloseBtn'
+import Modal from '@headlessui/react'
 
 const LargeView = () => {
-  const { connectors, error } = useConnect();
-  const { connector, isConnected } = useAccount();
-
   const { dark, radius, tab, isModalOpen, setProfile } =
-    useContext(ProfileContext);
+    useContext(ProfileContext)
 
-  const pradius = ["none", "md", "lg", "2xl"][radius];
+  const { connectors, error } = useConnect()
+  const { connector, isConnected } = useAccount()
+
+  const pradius = ['none', 'md', 'lg', '2xl'][radius]
 
   const list = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
-  };
+  }
 
   return (
     <>
       <div
         className={clsx(
-          "w-[50%] m-3 rounded-2xl bg-cover bg-no-repeat h-full ",
-          dark ? "dark" : ""
+          'w-[50%] m-3 rounded-2xl bg-cover bg-no-repeat h-full ',
+          dark ? 'dark' : ''
         )}
         style={{ backgroundImage: `url(assets/banner.png)` }}
       >
@@ -42,9 +42,9 @@ const LargeView = () => {
         <AnimatePresence>
           {isModalOpen && (
             <div
-              className={`h-full inset-0 overflow-y-auto ${dark ? "dark" : ""}`}
+              className={`h-full inset-0 overflow-y-auto ${dark ? 'dark' : ''}`}
             >
-              {" "}
+              {' '}
               {isConnected && <Connected />}
               <div className="flex min-h-full items-center justify-center text-center">
                 <div className="relative">
@@ -52,7 +52,7 @@ const LargeView = () => {
                     initial={{ scale: 0.4 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0.4 }}
-                    transition={{ duration: 0.7, type: "spring" }}
+                    transition={{ duration: 0.7, type: 'spring' }}
                     className={`flex relative w-[650px] h-[450px] overflow-hidden bg-white text-gray-900 dark:text-white dark:bg-dark-neutral-0 text-left align-middle shadow-xl rounded-${pradius} `}
                   >
                     <div className="flex-col border-r border-black dark:border-white border-opacity-10 dark:border-opacity-10 h-full ">
@@ -128,7 +128,7 @@ const LargeView = () => {
                                 <motion.li
                                   animate={{ x: 0, opacity: 1 }}
                                   initial={{ x: -500, opacity: 0 }}
-                                  transition={{ type: "tween", duration: 0.1 }}
+                                  transition={{ type: 'tween', duration: 0.1 }}
                                   className="p-0"
                                 >
                                   <button
@@ -162,7 +162,7 @@ const LargeView = () => {
         </AnimatePresence>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default LargeView;
+export default LargeView

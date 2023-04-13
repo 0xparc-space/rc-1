@@ -1,15 +1,19 @@
-import { useState } from "react";
-import ProfileContext, { Profile } from "../utils/ProfileContext";
-import Layout from "./Layout";
-import ConnectModal from "./ConnectModal";
+import { useEffect, useState } from 'react'
+import ProfileContext, { Profile } from '../utils/ProfileContext'
+import Layout from './Layout'
+import ConnectModal from './ConnectModal'
+import { WagmiConfig } from 'wagmi'
+import client from '../utils/wagmi'
 
 const ProfileContextInitializer = ({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) => {
-  const [isModalOpen, setisModalOpen] = useState(false);
-  const [profile, setProfile] = useState<Profile>({
+  const [isModalOpen, setisModalOpen] = useState(false)
+  const [profile, setProfile] = useState<Profile>()
+
+  const defaultProfile = {
     radius: 3,
     color: 0,
     dark: true,
@@ -17,22 +21,28 @@ const ProfileContextInitializer = ({
     tab: 0,
     isModalOpen: false,
     setProfile: (profile) => {
-      setProfile((prevProfile) => ({ ...prevProfile, ...profile }));
+      setProfile((prevProfile) => ({ ...prevProfile, ...profile }))
     },
     toggleModalOpen: (value: boolean) => setisModalOpen(!value),
-  });
+  }
+
+  useEffect(() => {
+    setProfile(defaultProfile)
+  }, [])
 
   return (
-    <ProfileContext.Provider value={profile}>
-      <Layout>
+    <WagmiConfig client={client}>
+      <ProfileContext.Provider value={profile}>
+        <Layout>
           {/* <ComponentBuilderSection /> */}
           {/* <Component {...pageProps} /> */}
           {children}
 
-          <ConnectModal />
+          {/* <ConnectModal /> */}
         </Layout>
-    </ProfileContext.Provider>
-  );
-};
+      </ProfileContext.Provider>
+    </WagmiConfig>
+  )
+}
 
-export default ProfileContextInitializer;
+export default ProfileContextInitializer

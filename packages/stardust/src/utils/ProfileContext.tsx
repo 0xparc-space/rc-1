@@ -8,8 +8,8 @@ export type Profile = {
   tab: number;
   isModalOpen: boolean;
 
-  setProfile: Dispatch<React.SetStateAction<Partial<Profile>>>;
-  toggleModalOpen: (open: boolean) => void;
+  setProfile?: Dispatch<React.SetStateAction<Partial<Profile>>>;
+  toggleModalOpen?: (open: boolean) => void;
 };
 
 const ProfileContext = createContext<Profile|null>({

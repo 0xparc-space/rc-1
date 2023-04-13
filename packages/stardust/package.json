@@ -8,16 +8,8 @@
     "rollup": "rollup -c",
     "preview": "vite preview"
   },
-  "peerDependencies": {
-    "@headlessui/react": "^1.7.10",
-    "ethers": "^5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "wagmi": "^0.12.4"
-  },
   "dependencies": {
     "@headlessui/react": "^1.7.10",
-    "@wagmi/connectors": "^0.3.12",
     "alchemy-sdk": "^2.6.2",
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
@@ -28,7 +20,7 @@
     "react-dom": "^18.2.0",
     "rollup": "^3.20.2",
     "rollup-plugin-typescript2": "^0.34.1",
-    "wagmi": "^0.11.6"
+    "wagmi": "^0.11.7"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",

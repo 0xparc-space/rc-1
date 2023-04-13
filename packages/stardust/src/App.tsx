@@ -1,12 +1,16 @@
-import ComponentBuilderSection from "./components/ComponentBuilderSection";
-import { useIsMobile } from "./utils/useIsMobile";
+import ComponentBuilderSection from './components/ComponentBuilderSection'
+import { useIsMobile } from './utils/useIsMobile'
 
-import { WagmiConfig } from "wagmi";
-import client from "./utils/wagmi";
-import ProfileContextInitializer from "./components/ProfileContextInitializer";
-import ConnectModal from "./components/ConnectModal";
-import Layout from "./components/Layout";
-
+import { WagmiConfig, useConnect } from 'wagmi'
+import client from './utils/wagmi'
+import ProfileContextInitializer from './components/ProfileContextInitializer'
+import ConnectModal from './components/ConnectModal'
+import Layout from './components/Layout'
+export const TestComponent = () => {
+  const res = useConnect()
+  console.log('res is', res)
+  return <></>
+}
 function App() {
   // const isMobile = useIsMobile();
 
@@ -14,12 +18,13 @@ function App() {
     <WagmiConfig client={client}>
       <ProfileContextInitializer>
         <Layout>
-          {/* <ComponentBuilderSection /> */}
+          <ComponentBuilderSection />
+          <TestComponent></TestComponent>
           <ConnectModal />
         </Layout>
       </ProfileContextInitializer>
     </WagmiConfig>
-  );
+  )
 }
 
-export default App;
+export default App
