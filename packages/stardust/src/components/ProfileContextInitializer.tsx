@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProfileContext, { Profile } from "../utils/ProfileContext";
 import Layout from "./Layout";
-import ConnectModal from "./ConnectModal";
-import { WagmiConfig } from "wagmi";
-import client from "../utils/wagmi";
 
 const ProfileContextInitializer = ({
   children,
@@ -25,17 +22,15 @@ const ProfileContextInitializer = ({
   };
 
   return (
-    <WagmiConfig client={client}>
-      <ProfileContext.Provider value={defaultProfile}>
-        <Layout>
-          {/* <ComponentBuilderSection /> */}
-          {/* <Component {...pageProps} /> */}
-          {children}
+    <ProfileContext.Provider value={defaultProfile}>
+      <Layout>
+        {/* <ComponentBuilderSection /> */}
+        {/* <Component {...pageProps} /> */}
+        {children}
 
-          {/* <ConnectModal /> */}
-        </Layout>
-      </ProfileContext.Provider>
-    </WagmiConfig>
+        {/* <ConnectModal /> */}
+      </Layout>
+    </ProfileContext.Provider>
   );
 };
 

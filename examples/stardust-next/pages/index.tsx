@@ -88,29 +88,12 @@ const client = createClient({
   webSocketProvider,
 });
 
-const TestWagmi = () => {
-  const s = useConnect();
-  console.log("result", s);
-  return <></>;
-};
-
-// const client = createClient({
-//   defaultClient
-// })
-// co
 export default function Home() {
   return (
-    // <WagmiConfig client={client}>
-    // {/* {console.log('use connect value is', useConnect())} */}
-    // {/* <ProfileContextInitializer> */}
-    // {/* <Component {...pageProps} /> */}
-    // <TestWagmi></TestWagmi>
-    // <TestComponent></TestComponent>
-    <ProfileContextInitializer>
-      <ConnectModal />
-    </ProfileContextInitializer>
-    // {/* <ConnectModal></ConnectModal> */}
-    // {/* </ProfileContextInitializer> */}
-    // </WagmiConfig>
+    <WagmiConfig client={client}>
+      <ProfileContextInitializer>
+        <ConnectModal />
+      </ProfileContextInitializer>
+    </WagmiConfig>
   );
 }
