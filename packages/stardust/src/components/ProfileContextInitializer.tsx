@@ -1,14 +1,15 @@
-import { useState } from "react";
-import ProfileContext, { Profile } from "../utils/ProfileContext";
-import Layout from "./Layout";
+import { useState } from 'react'
+import ProfileContext, { Profile } from '../utils/ProfileContext'
+import Layout from './Layout'
+import '../index.css'
 
 const ProfileContextInitializer = ({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) => {
-  const [isModalOpen, setisModalOpen] = useState(false);
-  const [profile, setProfile] = useState<Profile>();
+  const [isModalOpen, setisModalOpen] = useState(false)
+  const [profile, setProfile] = useState<Profile>()
 
   const defaultProfile = {
     radius: 3,
@@ -19,7 +20,7 @@ const ProfileContextInitializer = ({
     isModalOpen: true,
     setProfile: setProfile,
     toggleModalOpen: setisModalOpen,
-  };
+  }
 
   return (
     <ProfileContext.Provider value={defaultProfile}>
@@ -31,7 +32,7 @@ const ProfileContextInitializer = ({
         {/* <ConnectModal /> */}
       </Layout>
     </ProfileContext.Provider>
-  );
-};
+  )
+}
 
-export default ProfileContextInitializer;
+export default ProfileContextInitializer

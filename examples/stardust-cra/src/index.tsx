@@ -1,7 +1,12 @@
-import Head from 'next/head'
-import Image from 'next/image'
-// import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
 // const inter = Inter({ subsets: ['latin'] })
 import {
@@ -87,13 +92,14 @@ const client = createClient({
   provider,
   webSocketProvider,
 })
-
-export default function Home() {
-  return (
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <React.StrictMode>
     <WagmiConfig client={client}>
       <ProfileContextInitializer>
         <ConnectModal />
       </ProfileContextInitializer>
     </WagmiConfig>
-  )
-}
+  </React.StrictMode>
+)
+reportWebVitals()
