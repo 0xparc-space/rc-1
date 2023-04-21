@@ -7,6 +7,8 @@ import postcss from 'rollup-plugin-postcss'
 
 import tailwindConfig from './tailwind.config.cjs'
 import svg from 'rollup-plugin-svg'
+import image from '@rollup/plugin-image'
+import copy from 'rollup-plugin-copy-assets'
 
 export default [
   {
