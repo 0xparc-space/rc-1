@@ -41,7 +41,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
             <img src={img} width={28} />
           </div>
           <p className="ml-1">{connector.name}</p>
-          {!connector.ready && " (unsupported)"}
+          {/* {!connector.ready ? " (unsupported)" : ""} */}
           {/* {isLoading &&
             connector.id === pendingConnector?.id &&
             " (connecting)"} */}
@@ -64,7 +64,7 @@ const ConnectorBox = ({ connector }: { connector: Connector }) => {
           <img src={img} width={28} />
         </div>
         <p className="ml-1">{connector.name}</p>
-        {!connector.ready && " (unsupported)"}
+        {/* {!connector.ready ? " (unsupported)" : ""} */}
         {/* {isLoading &&
                     connector.id === pendingConnector?.id &&
                     " (connecting)"} */}
