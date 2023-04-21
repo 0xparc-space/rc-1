@@ -2,27 +2,27 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 // import type { AppProps } from 'next/app';
 
-import { WagmiConfig, createClient, configureChains, useConnect } from 'wagmi'
-import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains'
+// import { WagmiConfig, createClient, configureChains, useConnect } from 'wagmi'
+// import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains'
 import { ProfileContextInitializer, defaultClient } from 'stardust'
 // import { getDefaultProvider } from 'ethers'
-import { publicProvider } from '@wagmi/core/providers/public'
-const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet],
-  [publicProvider()]
-)
+// import { publicProvider } from '@wagmi/core/providers/public'
+// const { chains, provider, webSocketProvider } = configureChains(
+//   [mainnet],
+//   [publicProvider()]
+// )
 
-const TestWagmi = () => {
-  const s = useConnect()
-  console.log('result', s)
-  return <></>
-}
+// const TestWagmi = () => {
+//   const s = useConnect()
+//   console.log('result', s)
+//   return <></>
+// }
 
-const client = createClient({
-  autoConnect: true,
-  provider,
-  webSocketProvider,
-})
+// const client = createClient({
+//   autoConnect: true,
+//   provider,
+//   webSocketProvider,
+// })
 // const client = createClient({
 //   autoConnect: true,
 //   provider: getDefaultProvider(),

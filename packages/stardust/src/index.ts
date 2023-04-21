@@ -14,4 +14,5 @@ export {
   client,
   ConnectModal,
   TestComponent,
+  WagmiConfig,
 }

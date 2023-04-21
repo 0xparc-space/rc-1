@@ -5,6 +5,7 @@ import '../index.css'
 
 const ProfileContextInitializer = ({
   children,
+  ...rest
 }: {
   children: React.ReactNode
 }) => {
@@ -24,7 +25,7 @@ const ProfileContextInitializer = ({
 
   return (
     <ProfileContext.Provider value={defaultProfile}>
-      <Layout>
+      <Layout {...rest}>
         {/* <ComponentBuilderSection /> */}
         {/* <Component {...pageProps} /> */}
         {children}
